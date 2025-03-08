@@ -1,0 +1,237 @@
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.container_header {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    height: 125px;
+    position: fixed;
+    background-color: white;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 50%, rgba(255,131,74,0) 100%);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    /* padding: 30px 30px;  */
+}
+
+.logo a{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   font-weight: bold;
+   font-size: 32px;
+   color: rgba(254, 80, 0, 1);
+}
+
+
+.menu {
+    display: flex;
+    align-items: center;
+    background-color: rgba(217, 217, 217, 0.5);
+    border-radius: 50px;
+    justify-content: space-around;
+    /* width: 795px;
+    height: 100px; */
+    height: 65px;
+    width: 600px;
+}
+
+
+.menu a {
+    /* margin: 10px; */
+    background-color: rgba(221, 215, 213, 1);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    /* width: 180px; */
+    padding: 10px 25px;
+    justify-content: center;
+    color: #000; 
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+    
+}
+
+
+.button_conheca{
+    background-color: rgba(254, 80, 0, 1);
+    display: flex;
+    width: 125px;
+    height: 50px;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    transition:  0.3s ease-in-out;
+    border: 3px solid rgba(254, 80, 0, 1);
+}
+
+.button_conheca a{
+    color: #fff;
+    /* padding: 10px 20px; */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    
+} 
+
+
+.menu a:hover {
+    background-color: rgba(254, 80, 0, 1); 
+    color: #fff;
+    box-shadow: 0px 4px 10px  rgba(0, 0, 0, 0.25);
+}
+
+
+.button_conheca a:hover {
+    color: rgba(254, 80, 0, 1);
+}
+
+.button_conheca:hover {
+    background-color: #fff; 
+   
+    box-shadow: 0px 4px 10px  rgba(0, 0, 0, 0.25);
+}
+    
+.section_principal {
+    display: flex;
+    align-items: end;
+    height: 90vh;
+    width: 90%;
+    margin: auto;
+} 
+
+.container_principal_section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+}
+
+.div_principal_section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 85px;
+}
+
+.div_principal_section h1{
+    font-weight: bold;
+    font-size: 57px;
+    width: 36%;
+    color: #000;
+    margin: 0%;
+    padding: 0%;
+}
+
+.div_principal_section a{
+    color: rgba(254, 80, 0, 1);
+    background-color: #fff;
+    background: rgb(254,80,0);
+    background: linear-gradient(90deg, rgba(254,80,0,1) 36%, rgba(255,131,74,1) 100%);
+    border-radius: 15px;
+    font-size: 20px;
+    width: 325px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.div_principal_section .button_conheca_principal {
+    background-color: #fff;
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 15px;
+}
+
+.div_bolas{
+    width: 50%;
+    height: 83%;
+    display: flex;
+    justify-content: flex-end;  
+    align-items: flex-end; 
+    position: absolute;
+    right: 0;
+}
+
+.div_bolas img{
+    height: 80%;
+    z-index: -1;
+}
+
+
+.section_beneficios {
+    background: linear-gradient(90deg, rgba(254,80,0,1) 0%, rgba(255,131,74,1) 40%, rgba(254,80,0,1) 100%);
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.section_beneficios h1{
+    color: #fff;
+    font-size: 57px;
+    display: flex;
+}
+
+.container_beneficios {
+    text-align: center;
+}
+
+.container_quadros_beneficios {
+    display: flex;
+    gap: 80px; 
+}
+
+.container_quadros_beneficios div {
+    
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    width: 374px;
+    height: 300px;
+    border-radius: 20px;
+    color: rgba(254, 80, 0, 1);
+    font-weight: bold;
+    font-size: 30px;
+    
+}
+
+.section_sobre{
+    height: 90vh;
+}
+
+.section_projeto{
+    height: 85vh;
+    background: rgb(103,52,152);
+    background: linear-gradient(90deg, rgba(103,52,152,1) 0%, rgba(69,34,101,1) 50%, rgba(34,17,50,1) 100%);
+}
