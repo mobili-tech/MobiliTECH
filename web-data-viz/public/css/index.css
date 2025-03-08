@@ -212,9 +212,10 @@ body {
     gap: 80px; 
 }
 
-.container_quadros_beneficios div {
-    
+
+.quadro_beneficios {
     display: flex;
+    justify-content: space-around;
     align-items: center;
     background-color: #fff;
     width: 374px;
@@ -223,34 +224,80 @@ body {
     color: rgba(254, 80, 0, 1);
     font-weight: bold;
     font-size: 30px;
-    
+    flex-direction: column;
 }
+
+.div_icone{
+    border-radius: 100%;
+    box-shadow: 0px 4px 10px  rgba(0, 0, 0, 0.25);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(103, 52, 152, 1);;
+}
+
+.icone{
+    border-radius: 100%;
+    border: 2px solid rgba(103, 52, 152, 1);
+    width: 85px;
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quadro_beneficios span{
+    width: 316px;
+}
+
 
 .section_sobre{
     height: 80vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
 }
 
-.section_sobre h1{
+.container_sobre{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.div_bolas_esquerda{
+    display: flex;
+    align-items: end;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.div_bolas_direita{
+    display: flex;
+    align-items: end;
+    justify-content: flex-end;
+    height: 100%;
+}
+    
+.section_sobre h1{
+    
     font-size: 64px;
     color:rgba(103, 52, 152, 1);
     margin: 0;
-    width: 10%;
+    width: 20%;
 }
 
 .section_sobre p{
     font-size: 32px;
     color:#000;
     font-weight: bold;
-    width: 50%;
     width: 1000px;
+    line-height: 60px;
 }
 
 .section_sobre p a{
