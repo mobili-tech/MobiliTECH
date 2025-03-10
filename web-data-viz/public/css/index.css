@@ -6,6 +6,7 @@
 body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 
@@ -308,6 +309,101 @@ body {
     height: 85vh;
     background: rgb(103,52,152);
     background: linear-gradient(90deg, rgba(103,52,152,1) 0%, rgba(69,34,101,1) 50%, rgba(34,17,50,1) 100%);
+}
+
+.section_projeto {
+    display: flex;
+}
+
+.container_projeto{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+}
+
+.esquerda_projeto h1{
+    color: #fff;
+    width: 90%;
+    font-size: 57px;
+    font-weight: bold;
+}
+
+.esquerda_projeto p{
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    width: 82%;
+    line-height: 45px;
+}
+
+.esquerda_projeto{
+    width: 50%;
+}
+
+.button_plataforma {
+    background-color: #fff;
+    height: 84px;
+    width: 385px;
+    border-radius: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.conheca_plataforma{
+    border: 4px solid rgba(254, 80, 0, 1);
+    border-radius: 55px;
+    width: 92%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button_plataforma span{
+    color: rgba(254, 80, 0, 1);
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.esquerda_projeto a{
+    text-decoration: none;
+}
+
+.direita_projeto{
+    background-color: yellow;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topicos_projeto{
+    /* se adapta ao conteúdo dentro da div */
+    height: fit-content;
+    width: fit-content;
+    background-color: rgb(215, 34, 194);
+    display: flex;
+    width: 90%;
+}
+
+.topicos_projeto h6{
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.topicos_projeto p{
+    color: #fff;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.texto_topicos{
+    display: flex;
+    flex-direction: column;
 }
 
 /* RESPONSIVIDADE - IPHONE XR (414 x 896) */
