@@ -294,12 +294,12 @@ body {
   line-height: 60px;
 }
 
-.section_projeto{
+/* .section_projeto{
     height: 85vh;
     background: rgb(103,52,152);
     background: linear-gradient(90deg, rgba(103,52,152,1) 0%, rgba(69,34,101,1) 50%, rgba(34,17,50,1) 100%);
     display: flex;
-}
+} */
 
 .section_projeto {
   height: fit-content;
@@ -310,7 +310,6 @@ body {
     rgba(34, 17, 50, 1) 100%
   );
   display: flex;
-  padding-bottom: 35px;
 }
 
 .container_projeto {
@@ -337,6 +336,7 @@ body {
 
 .esquerda_projeto {
   width: 50%;
+  padding-bottom: 35px;
 }
 
 .button_plataforma {
