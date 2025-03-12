@@ -302,8 +302,7 @@ body {
 }
 
 .section_projeto {
-  height: 100vh;
-  background: rgb(103, 52, 152);
+  height: fit-content;
   background: linear-gradient(
     90deg,
     rgba(103, 52, 152, 1) 0%,
@@ -311,6 +310,7 @@ body {
     rgba(34, 17, 50, 1) 100%
   );
   display: flex;
+  padding-bottom: 35px;
 }
 
 .container_projeto {
