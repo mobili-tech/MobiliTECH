@@ -505,7 +505,7 @@ body {
     font-size: 10px;
 }
 
-.button_cadastrar{
+.button_enviar{
     text-decoration: none;
     background-color: #000;
     height: 37px;
@@ -517,7 +517,7 @@ body {
     border: 3px solid #fff;
 }
 
-.button_cadastrar a{
+.button_enviar a{
     text-decoration: none;
     font-weight: bold;
     font-size: 15px;
