@@ -452,18 +452,18 @@ body {
 
 .container_equipe {
   display: flex;
+  flex-direction: column;
   width: 90%;
   height: 100%;
   justify-content: center;
 }
 
-.div_titulo_controles_equipe {
+.container_equipe .div_titulo_controles_equipe {
   width: 100%;
   height: 20%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: bisque;
 }
 
 .div_titulo_controles_equipe h2 {
@@ -472,6 +472,44 @@ body {
   margin: 0;
 }
 
+.div_titulo_controles_equipe .controles_equipe {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.container_equipe .painel_imagem_equipe {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.painel_imagem_equipe .card_imagens {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 423.23px;
+  width: 232.26px;
+}
+.card_imagens .img_equipe {
+  height: 17rem;
+  width: 15rem;
+  border-radius: 50%;
+}
+
+.card_imagens .nome_equipe {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* FOOTER */
 .footer {
   height: 70vh;
   background-color: #000;
