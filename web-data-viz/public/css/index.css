@@ -309,9 +309,6 @@ body {
     height: 85vh;
     background: rgb(103,52,152);
     background: linear-gradient(90deg, rgba(103,52,152,1) 0%, rgba(69,34,101,1) 50%, rgba(34,17,50,1) 100%);
-}
-
-.section_projeto {
     display: flex;
 }
 
@@ -330,11 +327,11 @@ body {
 }
 
 .esquerda_projeto p{
-    font-size: 25px;
+    font-size: 23px;
     font-weight: bold;
     color: #fff;
-    width: 82%;
-    line-height: 45px;
+    width: 90%;
+    line-height: 50px;
 }
 
 .esquerda_projeto{
@@ -367,32 +364,42 @@ body {
     font-size: 23px;
 }
 
+.esquerda_projeto p span {
+    color: rgba(254, 80, 0, 1);
+}
+
 .esquerda_projeto a{
     text-decoration: none;
 }
 
 .direita_projeto{
-    background-color: yellow;
+    /* background-color: yellow; */
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .topicos_projeto{
     /* se adapta ao conteúdo dentro da div */
+    /* background-color: rgb(215, 34, 194); */
     height: fit-content;
     width: fit-content;
-    background-color: rgb(215, 34, 194);
     display: flex;
-    width: 90%;
+    width: 100%;
+    align-items: center;
+    font-size: 30px;
+    justify-content: space-between;
+    width: 95%;
 }
 
 .topicos_projeto h6{
     font-size: 25px;
     font-weight: bold;
     color: #fff;
+    margin: 0;
 }
 
 .topicos_projeto p{
@@ -404,8 +411,161 @@ body {
 .texto_topicos{
     display: flex;
     flex-direction: column;
+    width: 80%;
 }
 
+.div_icone_projeto{
+    border-radius: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(254, 80, 0, 1);
+    background-color: #fff;
+}
+
+.icone_projeto{
+    border-radius: 100%;
+    border: 2px solid rgba(254, 80, 0, 1);
+    width: 85px;
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.section_equipe{
+    height: 100vh;
+}
+
+.footer{
+    height: 70vh;
+    background-color: #000;
+    display: flex;
+}
+
+.container_footer{
+    width: 90%;
+    height: 85%;
+    margin: auto;
+    display: flex;
+    color: #fff;
+}
+
+.div_fale_conosco{
+    /* background-color: aqua; */
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.div_fale_conosco h1{
+    font-size: 40px;
+    margin: 0;
+}
+
+.div_fale_conosco span{
+    font-size: 20px;
+}
+
+.div_fale_conosco p {
+    font-size: 13px;
+    margin: 5px;
+}
+
+.div_fale_conosco input{
+    border-radius: 15px;
+    background-color: #000;
+    border: 3px solid #fff;
+}
+
+.container_input{
+    width: 100%;
+    height: 65%;
+}
+
+.input_pequena{
+    display: flex;
+    gap: 1%
+}
+
+.input_pequena input{
+    width: 194px;
+    height: 37px;
+    font-size: 10px;
+}
+
+.input_comentario input{
+    width: 403px;
+    height: 100px;
+    font-size: 10px;
+}
+
+.button_cadastrar{
+    text-decoration: none;
+    background-color: #000;
+    height: 37px;
+    width: 194px;
+    border-radius: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #fff;
+}
+
+.button_cadastrar a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+}
+
+.div_localizacao{
+    /* background-color: yellow; */
+    width: 18%;
+    font-size: 18px;
+}
+
+.div_localizacao span{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.div_contatos{
+    /* background-color: green; */
+    width: 18%;
+    font-size: 18px;
+}
+
+.div_contatos span{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.logo_footer{
+    /* background-color: blue; */
+    width: 29%;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.logo_footer span{
+    font-weight: bold;
+}
+
+.logo_footer h3{
+    font-size: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
 /* RESPONSIVIDADE - IPHONE XR (414 x 896) */
 @media (max-width: 768px) {
 /* FAZER HEADER DEPOISSSS */
