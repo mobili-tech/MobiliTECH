@@ -220,49 +220,98 @@
           <h2 class="">Nossa Equipe</h2>
 
           <div class="controles_equipe">
-            <span class="icons_left"><i class="bi bi-arrow-left-circle" style="font-size: 2rem;"></i></span>
-            <span class="icons_right"><i class="bi bi-arrow-right-circle" style="font-size: 2rem;"></i></span>
+            <span class="icons_left">
+              <i id="btnEsquerda" class="bi bi-arrow-left-circle" style="font-size: 2rem;"
+                onclick="moverCarrossel(-1)"></i>
+            </span>
+            <span class="icons_right">
+              <i id="btnDireita" class="bi bi-arrow-right-circle" style="font-size: 2rem;"
+                onclick="moverCarrossel(1)"></i>
+            </span>
           </div>
 
         </div>
 
         <div class="painel_imagem_equipe">
 
-          <div class="card_imagens">
+          <div class="carrossel_trilho">
 
-            <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
-            <span class="nome_equipe">Felipe Calace</span>
-            <span class="funcao_equipe">Dev. Back-end</span>
+            <div class="card_imagens">
 
-            <div class="div_icons_equipe_redes">
-              <span class="i_github"><i class="bi bi-github"></i></span>
-              <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Felipe Calace</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+                <span class="i_github"><i class="bi bi-github"></i></span>
+                <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
+              </div>
+
             </div>
 
-          </div>
+            <div class="card_imagens">
 
-          <div class="card_imagens">
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Guilherme Ferreira</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
 
-            <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
-            <span class="nome_equipe">Felipe Calace</span>
-            <span class="funcao_equipe">Dev. Back-end</span>
+              <div class="div_icons_equipe_redes">
+                <span class="i_github"><i class="bi bi-github"></i></span>
+                <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
+              </div>
 
-            <div class="div_icons_equipe_redes">
-              <span class="i_github"><i class="bi bi-github"></i></span>
-              <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
             </div>
 
-          </div>
+            <div class="card_imagens">
 
-          <div class="card_imagens">
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Marcelo Soares</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
 
-            <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
-            <span class="nome_equipe">Felipe Calace</span>
-            <span class="funcao_equipe">Dev. Back-end</span>
+              <div class="div_icons_equipe_redes">
+                <span class="i_github"><i class="bi bi-github"></i></span>
+                <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
+              </div>
 
-            <div class="div_icons_equipe_redes">
-              <span class="i_github"><i class="bi bi-github"></i></span>
-              <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
+            </div>
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Felipe Calace</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+                <span class="i_github"><i class="bi bi-github"></i></span>
+                <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
+              </div>
+
+            </div>
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Guilherme Ferreira</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+                <span class="i_github"><i class="bi bi-github"></i></span>
+                <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
+              </div>
+
+            </div>
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Marcelo Soares</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+                <span class="i_github"><i class="bi bi-github"></i></span>
+                <span class="i_linkedin"><i class="bi bi-linkedin"></i></span>
+              </div>
+
             </div>
 
           </div>
@@ -347,3 +396,35 @@
 </body>
 
 </html>
+<script>
+
+  let index = 0;
+  const totalImagens = document.querySelectorAll(".card_imagens").length;
+  const imagensVisiveis = 4;
+  const larguraImagem = 232.26 + 64;
+
+  
+  const btnEsquerda = document.querySelector(".icons_left i");
+  const btnDireita = document.querySelector(".icons_right i");
+
+  function atualizarBotoes() {
+    btnEsquerda.style.opacity = index === 0 ? "0.5" : "1";
+    btnDireita.style.opacity = index >= totalImagens - imagensVisiveis ? "0.5" : "1";
+  }
+
+  function moverCarrossel(direcao) {
+    const trilho = document.querySelector(".carrossel_trilho");
+    
+    const novoIndex = index + direcao;
+
+    if (novoIndex < 0 || novoIndex > totalImagens - imagensVisiveis) {
+      return;
+    }
+
+    index = novoIndex;
+
+    trilho.style.transform = `translateX(${-index * larguraImagem}px)`;
+
+    atualizarBotoes()
+  }
+</script>

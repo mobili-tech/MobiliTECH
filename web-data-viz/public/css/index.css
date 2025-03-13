@@ -482,15 +482,22 @@ body {
 }
 
 .container_equipe .painel_imagem_equipe {
+  overflow: hidden;
   height: 80%;
-  width: 100%;
+  width: (4 *(232.26 + 64));
   display: flex;
-  justify-content: space-evenly;
+}
+.carrossel_trilho {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: (4 *(232.26 + 64));
+  justify-content: center;
   align-items: center;
 }
 
 .painel_imagem_equipe .card_imagens {
   display: flex;
+  padding-left: 3rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -507,6 +514,13 @@ body {
 .card_imagens .nome_equipe {
   font-size: 1.3rem;
   font-weight: 700;
+}
+
+.icons_left{
+  left: 0;
+}
+.icons_rigth{
+  right: 0;
 }
 
 /* FOOTER */
