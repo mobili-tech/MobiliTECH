@@ -485,13 +485,13 @@ body {
 .container_equipe .painel_imagem_equipe {
   overflow: hidden;
   height: 80%;
-  width: (4 *(232.26 + 64));
+  width: (4 * (232.26 + 64));
   display: flex;
 }
 .carrossel_trilho {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: (4 *(232.26 + 64));
+  width: (4 * (232.26 + 64));
   justify-content: center;
   align-items: center;
 }
@@ -507,8 +507,15 @@ body {
   width: 232.26px;
   z-index: 1;
 }
+
+.div_icons_equipe_redes {
+  font-size: 1.4rem;
+  display: flex;
+  gap: 0.7rem;
+}
+
 .card_imagens .img_equipe {
-  height: 17rem;
+  height: 15rem;
   width: 15rem;
   border-radius: 50%;
 }
@@ -518,10 +525,10 @@ body {
   font-weight: 700;
 }
 
-.icons_left{
+.icons_left {
   left: 0;
 }
-.icons_rigth{
+.icons_rigth {
   right: 0;
 }
 
