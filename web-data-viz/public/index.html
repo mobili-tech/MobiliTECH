@@ -2,81 +2,481 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Página Inicial</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>MobiliTech</title>
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
-    </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
+
+  <header>
+
+    <div class="container_header">
+
+      <div class="header">
+
+        <div class="logo">
+          <a href="index.html">MobiliTech</a>
         </div>
+
+
+        <div class="menu">
+
+          <a href="#section_principal">Início</a>
+          <a href="#section_sobre">Sobre nós</a>
+          <a href="#section_projeto">Projeto</a>
+          <a href="#section_equipe">Equipe</a>
+
+        </div>
+
+
+
+        <div class="div_button_contato">
+          <a href="#footer" class="button_contato"><span>Contato</span> <i class="bi bi-telephone-fill"></i></a>
+        </div>
+
       </div>
+
     </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
+
+  </header>
+
+
+  <main>
+
+    <section class="section_principal" id="section_principal">
+
+      <div class="container_principal_section">
+
+        <div class="div_principal_section">
+          <h1>A melhor solução para <span style="color: rgba(103, 52, 152, 1);">SUA</span> empresa de transporte!</h1>
+
+          <a href="#section_projeto">
+            <div class="button_conheca_principal"><span>CONHEÇA</span><i class="bi bi-arrow-right"></i></div>
+          </a>
+
+        </div>
+
+        <div class="div_bolas">
+          <img src="assets/imgs/bolas inicio.png" alt="bolas" class="bolas_inicio">
+        </div>
+
       </div>
+
+    </section>
+
+
+    <section class="section_beneficios" id="section_beneficios">
+      <div class="container_beneficios">
+
+        <h1>Benefícios</h1>
+
+        <div class="container_quadros_beneficios">
+
+          <div class="quadro_beneficios">
+
+            <div class="div_icone">
+              <div class="icone">
+                <i class="bi bi-graph-up-arrow" width="16px" height="16"></i>
+              </div>
+            </div>
+
+            <span class="text_beneficio">Transformamos dados em Inteligência</span>
+          </div>
+
+          <div class="quadro_beneficios">
+
+            <div class="div_icone">
+              <div class="icone">
+                <i class="bi bi-gear-wide"></i>
+              </div>
+            </div>
+
+            <span class="text_beneficio">Otimizamos seus recursos e eficiência operacional</span>
+          </div>
+
+          <div class="quadro_beneficios">
+
+            <div class="div_icone">
+              <div class="icone">
+                <i class="bi bi-lightbulb"></i>
+              </div>
+            </div>
+
+            <span class="text_beneficio">Ajudamos a tomar decisões mais assertivas</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="section_sobre" id="section_sobre">
+
+      <div class="div_bolas_esquerda">
+        <img src="assets/imgs/bolas sobre esquerda.png" alt="bolas esquerda" class="bolas_esquerda">
+      </div>
+
+      <div class="container_sobre">
+        <h1>Sobre Nós</h1>
+        <p>Somos a <a>MobiliTech</a>, unimos a mobilidade e a tecnologia, para otimizar o transporte urbano com
+          <a>inteligência</a>.
+          Através da análise de dados reais, identificamos linhas com baixa ocupação e eficiência, ajudando <a>sua</a>
+          empresa a reduzir custos sem perder <a>qualidade.</a>
+        </p>
+      </div>
+
+      <div class="div_bolas_direita">
+        <img src="assets/imgs/bolas sobre direita.png" alt="bolas direita" class="bolas_direita">
+      </div>
+
+    </section>
+
+
+    <section class="section_projeto" id="section_projeto">
+
+      <div class="container_projeto">
+        <div class="esquerda_projeto">
+
+          <h1>Projeto</h1>
+
+          <p>A MobiliTech nasceu da necessidade de tornar o transporte urbano mais eficiente e sustentável. Utilizamos
+            tecnologia e análise de dados para identificar linhas com baixa ocupação e propor ajustes estratégicos que
+            <span>otimizam recursos</span>, <span>reduzem custos</span> e <span>melhoram a mobilidade</span>.
+          </p>
+
+          <a href="">
+            <div href="" class="button_plataforma">
+              <div class="conheca_plataforma">
+                <span>Conheça nossa plataforma</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="direita_projeto">
+
+          <div class="topicos_projeto">
+
+            <div class="div_icone_projeto">
+              <div class="icone_projeto">
+                <i class="bi bi-graph-down"></i>
+              </div>
+            </div>
+
+            <div class="texto_topicos">
+              <h6>Redução de Custos Operacionais</h6>
+              <p>Ajudamos a reduzir custos ajustando frota, horários e rotas.</p>
+            </div>
+          </div>
+
+
+          <div class="topicos_projeto">
+
+            <div class="div_icone_projeto">
+              <div class="icone_projeto">
+                <i class="bi bi-bar-chart-line"></i>
+              </div>
+            </div>
+
+            <div class="texto_topicos">
+              <h6>Decisões Inteligentes com Dados</h6>
+              <p>Usamos dados reais para ajudar na melhor ocupação dos veículos.</p>
+            </div>
+          </div>
+
+
+          <div class="topicos_projeto">
+
+            <div class="div_icone_projeto">
+              <div class="icone_projeto">
+                <i class="bi bi-lightning-charge"></i>
+              </div>
+            </div>
+
+            <div class="texto_topicos">
+              <h6>Agilidade e Flexibilidade</h6>
+              <p>Alertas e notificações permitem ajustes rápidos na operação.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section_equipe" id="section_equipe">
+      <div class="container_equipe">
+
+        <div class="div_titulo_controles_equipe">
+
+          <h2 class="">Nossa Equipe</h2>
+
+          <div class="controles_equipe">
+
+            <span class="icons_left">
+
+              <i id="btnEsquerda" class="bi bi-arrow-left-circle" style="font-size: 2rem;"
+                onclick="moverCarrossel(-1)">
+              </i>
+
+            </span>
+
+            <span class="icons_right">
+
+              <i id="btnDireita" class="bi bi-arrow-right-circle" style="font-size: 2rem;"
+                onclick="moverCarrossel(1)">
+              </i>
+
+            </span>
+            
+          </div>
+
+        </div>
+
+        <div class="painel_imagem_equipe">
+
+          <div class="carrossel_trilho">
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/guisantos (2).jpg" class="img_equipe">
+              <span class="nome_equipe">Felipe Calace</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+
+                <a href="https://github.com/felipecalace" class="i_github">
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/felipe-calace/" class="i_linkedin">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/guisantos (2).jpg" class="img_equipe">
+              <span class="nome_equipe">Guilherme Ferreira</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+
+                <a href="https://github.com/GuiSantos04" class="i_github">
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/guilherme-ferreira-santos-06a188196/" class="i_linkedin">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Marcelo Soares</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+
+                <a href="" class="i_github">
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <a href="" class="i_linkedin">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Samuel Belarmino</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+
+                <a href="" class="i_github">
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <a href="" class="i_linkedin">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Moises Henry</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+
+                <a href="https://github.com/moiseshbs" class="i_github">
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <a href="" class="i_linkedin">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+            <div class="card_imagens">
+
+              <img src="./assets/imgs/GuiSantos.jpg" class="img_equipe">
+              <span class="nome_equipe">Thiago Galvão</span>
+              <span class="funcao_equipe">Dev. Back-end</span>
+
+              <div class="div_icons_equipe_redes">
+
+                <a href="" class="i_github">
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <a href="" class="i_linkedin">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer class="footer" id="footer">
+
+    <div class="container_footer">
+
+      <div class="div_fale_conosco">
+
+        <h1>Fale conosco</h1>
+        <span>Deixe seu contato</span>
+
+        <div class="container_input">
+
+          <div class="input_pequena">
+
+            <div class="input_pequena_esquerda">
+              <p>Nome</p>
+              <input type="text" placeholder="nome completo">
+              <p>Empresa</p>
+              <input type="text" placeholder="razão social">
+            </div>
+
+            <div class="input_pequena_direita">
+              <p>E-mail</p>
+              <input type="text" placeholder="email@example.com">
+              <p>CNPJ</p>
+              <input type="text" placeholder="00.000.000/0000-00">
+            </div>
+
+          </div>
+
+
+          <div class="input_comentario">
+            <p>Observações</p>
+            <textarea name="" id="" placeholder="Deixe seu comentário"></textarea>
+            <!-- <input type="text" name="" id="" placeholder=""> -->
+          </div>
+
+        </div>
+
+        <a href="" class="button_enviar_a">
+          <div class="button_enviar">
+            Enviar
+          </div>
+        </a>
+
+      </div>
+
+      <div class="div_localizacao">
+        <span>São Paulo</span>
+        <p>R. Haddock Lobo, 595</p>
+        <p>Cerqueira César</p>
+        <p>CEP 01414-001</p>
+      </div>
+
+
+      <div class="div_contatos">
+        <span>Contatos</span>
+        <p>MobiliTech@sptech.school</p>
+        <p>55 11 94002-8920</p>
+      </div>
+
+
+      <div class="logo_footer">
+        <span>© 2025 MobiliTech</span>
+        <h3>MobiliTech</h3>
+      </div>
+
     </div>
-  </body>
+
+  </footer>
+
+</body>
 
 </html>
+<script>
+
+  let index = 0;
+  const totalImagens = document.querySelectorAll(".card_imagens").length;
+  const imagensVisiveis = 4;
+  const larguraImagem = 232.26 + 64;
+
+
+  const btnEsquerda = document.querySelector(".icons_left i");
+  const btnDireita = document.querySelector(".icons_right i");
+
+  function atualizarBotoes() {
+    btnEsquerda.style.opacity = index === 0 ? "0.5" : "1";
+    btnDireita.style.opacity = index >= totalImagens - imagensVisiveis ? "0.5" : "1";
+  }
+
+  function moverCarrossel(direcao) {
+    const trilho = document.querySelector(".carrossel_trilho");
+
+    const novoIndex = index + direcao;
+
+    if (novoIndex < 0 || novoIndex > totalImagens - imagensVisiveis) {
+      return;
+    }
+
+    index = novoIndex;
+
+    trilho.style.transform = `translateX(${-index * larguraImagem}px)`;
+
+    atualizarBotoes()
+  }
+</script>
