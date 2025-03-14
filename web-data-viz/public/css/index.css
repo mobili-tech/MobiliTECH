@@ -18,11 +18,9 @@ body {
   position: fixed;
   background-color: white;
   background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 131, 74, 0) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 131, 74, 0) 100%);
   z-index: 10;
 }
 
@@ -139,11 +137,9 @@ body {
   color: rgba(254, 80, 0, 1);
   background-color: #fff;
   background: rgb(254, 80, 0);
-  background: linear-gradient(
-    90deg,
-    rgba(254, 80, 0, 1) 36%,
-    rgba(255, 131, 74, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(254, 80, 0, 1) 36%,
+      rgba(255, 131, 74, 1) 100%);
   border-radius: 15px;
   font-size: 20px;
   width: 325px;
@@ -183,12 +179,10 @@ body {
 }
 
 .section_beneficios {
-  background: linear-gradient(
-    90deg,
-    rgba(254, 80, 0, 1) 0%,
-    rgba(255, 131, 74, 1) 40%,
-    rgba(254, 80, 0, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(254, 80, 0, 1) 0%,
+      rgba(255, 131, 74, 1) 40%,
+      rgba(254, 80, 0, 1) 100%);
   height: 80vh;
   display: flex;
   align-items: center;
@@ -304,12 +298,11 @@ body {
 
 .section_projeto {
   height: fit-content;
-  background: linear-gradient(
-    90deg,
-    rgba(103, 52, 152, 1) 0%,
-    rgba(69, 34, 101, 1) 50%,
-    rgba(34, 17, 50, 1) 100%
-  );
+  width: 100wh;
+  background: linear-gradient(90deg,
+      rgba(103, 52, 152, 1) 0%,
+      rgba(69, 34, 101, 1) 50%,
+      rgba(34, 17, 50, 1) 100%);
   display: flex;
 }
 
@@ -488,6 +481,7 @@ body {
   width: (4 * (232.26 + 64));
   display: flex;
 }
+
 .carrossel_trilho {
   display: flex;
   transition: transform 0.5s ease-in-out;
@@ -530,6 +524,7 @@ body {
 .icons_left {
   left: 0;
 }
+
 .icons_rigth {
   right: 0;
 }
@@ -672,19 +667,21 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
 /* RESPONSIVIDADE - IPHONE XR (414 x 896) */
 @media (max-width: 768px) {
+
   /* FAZER HEADER DEPOISSSS */
   .container_header {
-    height: 25vh;
-
-    display: none;
+    height: fit-content;
+    display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 15px;
   }
 
   .header {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -692,21 +689,39 @@ body {
     gap: 20px;
   }
 
+  
   .menu {
-    width: 100%;
+    width: 95%;
   }
-
+  
   .menu a {
     width: 10%;
-    font-size: 0.7rem;
+    height: 40%;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  
+  .div_button_contato {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .button_contato {
+    height: 60px;
+    width: 60px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   }
 
+  .button_contato span {
+    display: none;
+  }
   /* SECTION INICIO */
   .section_principal {
-    min-height: 100vh;
-    height: max-content;
+    padding-top: 100px;
+    height: fit-content;
   }
-
+  
   .div_principal_section {
     padding: 40px 0;
   }
@@ -721,7 +736,7 @@ body {
   }
 
   .div_bolas {
-    bottom: 0;
+    height: 100%;
   }
 
   /* SECTION BENEFICIOS */
@@ -782,5 +797,132 @@ body {
 
   .div_bolas_direita img {
     height: 120%;
+  }
+
+  /* SECTION PROJETO */
+  .section_projeto {
+    height: fit-content;
+    padding: 20px 0;
+  }
+
+  .container_projeto {
+    flex-direction: column;
+  }
+
+  .esquerda_projeto {
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .esquerda_projeto h1, p {
+    width: 100% !important;
+  }
+
+  .direita_projeto {
+    width: 100%;
+    gap: 25px;
+  }
+
+  .topicos_projeto {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .texto_topicos {
+    width: 72%;
+  }
+
+  .texto_topicos p{
+    width: 100% !important;
+  }
+
+  .div_icone_projeto {
+    width: 100px;
+    height: 100px;
+  }
+
+  .icone_projeto {
+    width: 80px;
+    height: 80px;
+  }
+
+  .button_plataforma {
+    width: 100%;
+  }
+
+  /* SECTION EQUIPE */
+  .section_equipe {
+    width: 100vw;
+    height: fit-content;
+  }
+
+  .container_equipe {
+    width: 100%;
+  }
+
+  .div_titulo_controles_equipe {
+    width: 90% !important;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+  }
+
+  .div_titulo_controles_equipe h2{
+    text-align: start;
+    width: 250px;
+  }
+
+  .painel_imagem_equipe {
+    height: fit-content !important;
+    width: calc((4*(232.26 + 64)));
+  }
+  
+  /* FOOTER */
+  .footer {
+    height: fit-content;
+    padding: 50px 0;
+  }
+
+  .container_footer {
+    flex-direction: column;
+  }
+
+  .div_fale_conosco {
+    width: 100%;
+  }
+
+  .input_pequena {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .input_pequena_esquerda, .input_pequena_direita {
+    width: 50%;
+  }
+
+  .input_pequena_esquerda input, .input_pequena_direita input{
+    width: 85%;
+  }
+
+  .input_comentario textarea {
+    width: 93%;
+    margin-bottom: 15px;
+  }
+
+  .div_localizacao, .div_contatos, .logo_footer {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .logo_footer {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
   }
 }
