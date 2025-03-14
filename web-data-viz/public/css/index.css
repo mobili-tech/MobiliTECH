@@ -509,7 +509,7 @@ body {
 }
 
 .div_icons_equipe_redes {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   display: flex;
   gap: 0.7rem;
 }
@@ -518,6 +518,8 @@ body {
   height: 15rem;
   width: 15rem;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .card_imagens .nome_equipe {
