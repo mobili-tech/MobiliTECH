@@ -1,60 +1,62 @@
-* {
-  padding: 0;
-  margin: 0;
+main {
+  width: 100%;
+  padding: 0rem 7rem;
 }
 
-.container-navegacao {
-  background-color: #f7f5ff;
-  width: 15%;
-  min-height: 100dvh;
-  text-align: center;
+.header-perfil {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.container-navegacao h2 {
-  font-size: 2rem;
-  color: #fe5000;
-}
-
-.container-funcionalidades {
+  height: 25%;
   display: flex;
-  height: 60vh;
-  flex-direction: column;
   justify-content: space-between;
-}
-.container-funcionalidades a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.div-funcionalidades {
-  width: 100%;
-  display: flex;
-  align-items: start;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.div-acessos {
-  width: 100%;
-  display: flex;
   align-items: center;
-  flex-direction: column;
-  gap: 1rem;
 }
 
-.itens-nav {
+.header-perfil h2 {
+  font-size: 2rem;
+}
+
+.div-notificações {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid black;
+  height: 1.7rem;
+  width: 1.7rem;
 }
 
-.perfil {
-  color: #ffff;
-  background: linear-gradient(rgb(255, 131, 74), rgb(254, 80, 0));
-  padding: 0.3rem 1.3rem;
-  border-radius: 15px;
+/* CORPO DO PERFIL */
+.div-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.div-infos .div-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.div-cards .spn-label {
+  font-size: 1rem;
+}
+
+.nome-empresa {
+  font-size: 3rem;
+}
+
+.email-empresa {
+  font-size: 1.7rem;
+}
+
+.linhas-empresa {
+  font-size: 1.3rem;
+}
+
+.header-perfil h2,
+.linhas-empresa,
+.email-empresa,
+.nome-empresa {
+  font-weight: 900;
 }
