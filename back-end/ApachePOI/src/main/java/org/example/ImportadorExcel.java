@@ -32,9 +32,9 @@ public class ImportadorExcel {
 
     // Importa os dados do arquivo Excel e insere no banco de dados
     public static void importarArquivo(String caminhoArquivo) {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/mobilitech";
-        String usuario = "root";
-        String senha = "Felipe1404";
+        String jdbcUrl = System.getenv("DB_HOST");
+        String usuario = System.getenv("DB_USER");
+        String senha = System.getenv("DB_PSWD");
 
         try (Connection conn = DriverManager.getConnection(jdbcUrl, usuario, senha);
              FileInputStream fis = new FileInputStream(caminhoArquivo);
