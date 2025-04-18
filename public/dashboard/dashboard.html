@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- FONTE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="container-navegacao">
+
+            <h2>Mobilitech</h2>
+
+            <div class="container-funcionalidades">
+
+                <div class="div-funcionalidades">
+
+                    <a class="itens-nav selecionado" href="#">
+                        <i class="bi bi-columns-gap"></i>
+                        <p>DashBoards</p>
+                    </a>
+
+                    <a class="itens-nav" href="#">
+                        <i class="bi bi-filter-left"></i>
+                        <p>Linhas</p>
+                    </a>
+
+                    <a class="itens-nav" href="veiculos.html">
+                        <i class="bi bi-bus-front-fill"></i>
+                        <p>Veículos</p>
+                    </a>
+
+                </div>
+
+                <div class="div-acessos">
+
+                    <a class="itens-nav perfil" href="./page-perfil.html">
+                        <i class="bi bi-person"></i>
+                        <p>Perfil</p>
+                    </a>
+
+                    <a class="itens-nav" href="../index.html">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <p>Sair</p>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </nav>
+
+    <main>
+
+        <header class="header-main">
+
+            <h2>DASHBOARD</h2>
+
+            <div class="div-notificações">
+
+                <i class="bi bi-bell" style="font-size: 1.2rem;"></i>
+                <i class="bi bi-bell-fill icon-houver" style="font-size: 1.2rem; display: none;"></i>
+
+            </div>
+
+        </header>
+
+        <div class="div-container-conteudo">
+            
+            <div class="div-container-kpi">
+
+                <div class="card-kpi">
+
+                    <div class="div-titulo-kpi">
+                        <span class="titulo-kpi">Linhas Regulares</span>
+                    </div>
+
+                    <div class="div-dados-kpi">
+                        <span class="dados-kpi"><span>62</span> / 130</span>
+                    </div>
+
+                </div>
+
+                <div class="card-kpi">
+
+                    <div class="div-titulo-kpi">
+                        <span class="titulo-kpi">totais de passageiros</span>
+                    </div>
+
+                    <div class="div-dados-kpi">
+                        <span class="dados-kpi">29.349</span>
+                    </div>
+
+                </div>
+                
+                <div class="card-kpi">
+
+                    <div class="div-titulo-kpi">
+                        <span class="titulo-kpi">Alguma KPI Irada</span>
+                    </div>
+
+                    <div class="div-dados-kpi">
+                        <span class="dados-kpi">WOW</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="div-container-dash">
+
+                <div class="dash-left">
+                    <div class="card-dash-left">
+                        <span>Comparativo mensal do Status das Linhas</span>
+                        <canvas id="dash-status-mensal"></canvas>
+                    </div>
+                    
+                    <div class="card-dash-left">
+                        <span>Comparativo mensal do Status das Linhas</span>
+                        <canvas id="dash-status-semanal"></canvas>
+                    </div>
+
+                </div>
+
+                <div class="dash-right">
+
+                    <div class="card-dash-right">
+                        <span>Comparativo mensal do Status das Linhas</span>
+                        <canvas id="dash-ocupacao-linhas"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </div>
+
+    </main>
+
+
+
+
+
+</body>
+
+</html>
+
+<script>
+  const ctx = document.getElementById('dash-status-mensal');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const cty = document.getElementById('dash-status-semanal');
+
+  new Chart(cty, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctz = document.getElementById('dash-ocupacao-linhas');
+
+  const data = {
+  labels: [
+    'Red',
+    'Blue',
+    'Yellow'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+};
+
+new Chart(ctz, {
+    type: 'pie',
+    data: data,
+  });
+
+</script>

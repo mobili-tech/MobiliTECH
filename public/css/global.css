@@ -45,7 +45,7 @@ body {
 .div-funcionalidades {
   width: 100%;
   display: flex;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
   gap: 1rem;
 }
@@ -64,15 +64,12 @@ body {
   gap: 1rem;
 }
 
-.perfil {
+.selecionado {
   color: #ffff;
   background: linear-gradient(rgb(255, 131, 74), rgb(254, 80, 0));
   padding: 0.3rem 1.3rem;
   border-radius: 15px;
 }
-
-
-
 
 .header {
   display: flex;
@@ -96,7 +93,6 @@ body {
   width: 1.7rem;
 }
 
-
 main {
   width: 100%;
   min-height: 100vh;
@@ -107,4 +103,28 @@ main {
 .div-infos {
   display: flex;
   flex-direction: column;
+}
+
+/* HEADER MAIN */
+.header-main {
+  display: flex;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-main h2 {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.div-notificações {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid black;
+  height: 1.7rem;
+  width: 1.7rem;
 }
