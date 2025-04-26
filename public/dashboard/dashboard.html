@@ -86,7 +86,7 @@
     <div class="div-container-conteudo">
 
       <div class="div-container-kpi">
-
+        <!-- ESSES DADOS SERÃO REFERENTES AO DIA ANTERIOR -->
         <div class="card-kpi">
 
           <div class="div-titulo-kpi">
@@ -102,11 +102,11 @@
         <div class="card-kpi">
 
           <div class="div-titulo-kpi">
-            <span class="titulo-kpi">totais de passageiros</span>
+            <span class="titulo-kpi">Linhas Subutilizadas</span>
           </div>
 
           <div class="div-dados-kpi">
-            <span class="dados-kpi">29.349</span>
+            <span class="dados-kpi"><span>38</span> / 130</span>
           </div>
 
         </div>
@@ -114,11 +114,11 @@
         <div class="card-kpi">
 
           <div class="div-titulo-kpi">
-            <span class="titulo-kpi">Alguma KPI Irada</span>
+            <span class="titulo-kpi">Linhas Superlotadas</span>
           </div>
 
           <div class="div-dados-kpi">
-            <span class="dados-kpi">WOW</span>
+            <span class="dados-kpi"><span>30</span> / 130</span>
           </div>
 
         </div>
@@ -131,14 +131,14 @@
 
           <div class="card-dash-left">
 
-            <span>Comparativo mensal do Status das Linhas</span>
+            <span>Quantidade de Passageiros Transportados por Mês</span>
             <canvas id="dash-status-mensal"></canvas>
 
           </div>
 
           <div class="card-dash-left">
 
-            <span>Comparativo mensal do Status das Linhas</span>
+            <span>Evolução do Índice de Ocupação das Linhas</span>
             <canvas id="dash-status-semanal"></canvas>
 
           </div>
@@ -148,8 +148,8 @@
         <div class="dash-right">
 
           <div class="card-dash-right">
-            
-            <span>Ocupção das Linhas</span>
+            <!-- GRÁFICO DE PIZZA - PERCENTUAL MENSAL DE OCUPAÇÃO DAS LINHAS -->
+            <span>Percentual de Ocupação Mensal das Linhas</span>
             <canvas id="dash-ocupacao-linhas"></canvas>
 
           </div>
@@ -172,49 +172,16 @@
 
   let labelX = ['Janeiro', 'Fevereriro', 'Março', 'Abril', 'Maio', 'Junho'];
 
-  let dadosIdeal = [12, 15, 10, 13, 10, 20];
-  let dadosAbaixo = [12, 19, 13, 25, 12, 14];
-  let dadosAcima = [12, 19, 13, 12, 12, 13];
+  let qtdPasseigos = [29800, 28500, 27800, 30800, 29800, 49800];
 
   new Chart(ctx, {
     type: 'bar',
     data: {
       labels: labelX,
       datasets: [{
-        label: 'Ideal',
-        data: dadosIdeal,
-        backgroundColor: '#6B9834'
-      },
-      {
-        label: 'Abaixo',
-        data: dadosAbaixo,
-        backgroundColor: '#343C98'
-      },
-      {
-        label: 'acima',
-        data: dadosAcima,
-        backgroundColor: '#FF0000'
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-
-  const cty = document.getElementById('dash-status-semanal');
-
-  new Chart(cty, {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
+        label: 'Total',
+        data: qtdPasseigos,
+        backgroundColor: 'orange'
       }]
     },
     options: {
@@ -249,6 +216,59 @@
   new Chart(ctz, {
     type: 'pie',
     data: data,
+  });
+
+  const cty = document.getElementById('dash-status-semanal').getContext('2d');
+
+  const ocupacaoDistribuicaoChart = new Chart(cty, {
+    type: 'bar',
+    data: {
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+      datasets: [
+        {
+          label: 'Superlotadas',
+          data: [40, 35, 38, 30, 42, 39],
+          backgroundColor: 'red'
+        },
+        {
+          label: 'Regulares',
+          data: [30, 40, 35, 45, 33, 36],
+          backgroundColor: 'green'
+        },
+        {
+          label: 'Subutilizadas',
+          data: [30, 25, 27, 25, 25, 25],
+          backgroundColor: 'blue'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          mode: 'index',
+          intersect: false
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          title: {
+            display: true,
+            text: 'Meses'
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: 'Percentual (%)'
+          }
+        }
+      }
+    }
   });
 
 </script>
