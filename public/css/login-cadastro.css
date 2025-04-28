@@ -1,0 +1,131 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+
+  display: flex;
+}
+
+.div_esquerda {
+  background: rgb(254, 80, 0);
+  background: linear-gradient(
+    70deg,
+    rgba(254, 80, 0, 1) 20%,
+    rgba(255, 131, 74, 1) 52%,
+    rgba(254, 80, 0, 1) 100%
+  );
+
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div_esquerda_cadastrar {
+  background: #673498;
+  background: linear-gradient(70deg, #221132 20%, #452265 52%, #673498 100%);
+}
+
+.titulo_esquerda {
+  color: #fff;
+  font-weight: bolder;
+  width: 80%;
+  font-size: 4.5rem;
+}
+
+.titulo_esquerda_cadastrar {
+  width: 70%;
+}
+
+.div_direita {
+  width: 65%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div_conteudo_direita {
+  height: fit-content;
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.div_input {
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.div_input > label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.div_input > input {
+  padding-left: 10px;
+  height: 40px;
+  border-radius: 10px;
+  border: solid 2px #00000050;
+  background-color: #d9d9d950;
+  outline: none;
+  transition: 200ms;
+}
+
+.div_input > input:focus-visible {
+  background-color: #ffffff;
+}
+
+.div_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+}
+.div_btn .btn_login a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.div_btn .btn_login {
+  text-decoration: none;
+  background: rgb(254, 80, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(254, 80, 0, 1) 40%,
+    rgba(255, 131, 74, 1) 100%
+  );
+  width: 80%;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: #00000015 2px 3px 3px 0px;
+
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.div_btn span > a {
+  color: purple;
+  text-decoration: none;
+  font-weight: bold;
+}

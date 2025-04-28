@@ -1,30 +1,3 @@
-main {
-  width: 100%;
-  padding: 0rem 7rem;
-}
-
-.header-perfil {
-  display: flex;
-  height: 25%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-perfil h2 {
-  font-size: 2rem;
-}
-
-.div-notificações {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 1px solid black;
-  height: 1.7rem;
-  width: 1.7rem;
-}
-
 /* CORPO DO PERFIL */
 .div-infos {
   display: flex;
@@ -54,7 +27,6 @@ main {
   font-size: 1.3rem;
 }
 
-.header-perfil h2,
 .linhas-empresa,
 .email-empresa,
 .nome-empresa {
