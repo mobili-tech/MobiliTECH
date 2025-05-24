@@ -1,0 +1,88 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.div_container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.titulo{
+    display: flex;
+   
+    justify-content: center;
+    
+}
+
+.titulo_esquerda{
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 60%
+}
+
+.div_esquerda{
+    width: 35%;
+    height: 100%;
+    background: #221132;
+    background: linear-gradient(90deg, rgba(34, 17, 50, 1) 0%, rgba(69, 34, 101, 1) 50%, rgba(103, 52, 152, 1) 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 35px;
+}
+
+.div_direita{
+      width: 65%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.div_conteudo{
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.div_conteudo_direita {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.div_input > input {
+    padding-left: 10px;
+    height: 40px;
+    border-radius: 10px;
+    border: solid 2px #00000050;
+    background-color: #d9d9d950;
+    outline: none;
+    transition: 200ms;
+    display: flex;
+    flex-direction: column;
+}
+
+.div_input label {
+
+}
+
+.div_top {
+  display: flex;
+}
