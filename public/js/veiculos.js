@@ -1,107 +1,102 @@
 function listarGrupos() {
-    div_infos.innerHTML = `
-        <div class="div-linha">
-            <div class="linha-titulo">
-                <h2>Grupo Distribuicao</h2>
+    fetch(`/veiculos/listarPorEmpresa/${sessionStorage.ID_EMPRESA}`).then(function (resposta) {
+        if (resposta.ok) {
+            if (resposta.status == 204) {
+                // var feed = document.getElementById("feed_teste");
+                // var mensagem = document.createElement("span");
+                // mensagem.innerHTML = "Nenhum resultado encontrado."
+                // feed.appendChild(mensagem);
+                throw "Nenhum resultado encontrado!!";
+            } else {
+                resposta.json().then(function (resposta) {
+                    var veiculosGrupo1 = [];
+                    var veiculosGrupo2 = [];
+                    var veiculosGrupo3 = [];
 
-                <div class="pencil-icon" id="icone_editar" onclick="editarOnibus()">
-                    <i class="bi bi-pencil"></i>
-                </div>
-            </div>
+                    for (let i = 0; i < resposta.length; i++) {
+                        if (resposta[i].fkGrupo == 1) {
+                            veiculosGrupo1.push(resposta[i]);
+                        } else if (resposta[i].fkGrupo == 2) {
+                            veiculosGrupo2.push(resposta[i]);
+                        } else if (resposta[i].fkGrupo == 3) {
+                            veiculosGrupo3.push(resposta[i]);
+                        }
+                    }
 
-            <div class="div-row-onibus">
-                <div class="div-onibus">
-                    <div class="div-delete" id="delete_onibus" onclick="abrirModalDelete()">
-                        <i class="bi bi-trash"></i>
-                    </div>
+                    for (let i = 0; i < veiculosGrupo1.length; i++) {
+                        div_grupo1.innerHTML += `
+                            <div class="div-onibus">
+                                <div class="div-delete delete-onibus grupo1" onclick="abrirModalDelete(${veiculosGrupo1[i].fkGrupo}, ${veiculosGrupo1[i].fkVeiculo}, ${veiculosGrupo1[i].fkEmpresa}, '${veiculosGrupo1[i].veiculo}', '${veiculosGrupo1[i].grupo}')">
+                                    <i class="bi bi-trash"></i>
+                                </div>
 
-                    <div class="div-img">
-                        <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
-                    </div>
+                                <div class="div-img">
+                                    <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
+                                </div>
 
-                    <div class="div-title-onibus">
-                        <h3>Miniônibus</h3>
-                    </div>
-                </div>
+                                <div class="div-title-onibus">
+                                    <h3>${veiculosGrupo1[i].veiculo}</h3>
+                                </div>
+                            </div>
+                        `;
+                    }
 
-                <div class="div-onibus" id="div_adicionar">
-                    <div class="add-icon" onclick="abrirModal()">
-                        <i class="bi bi-plus"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    for (let i = 0; i < veiculosGrupo2.length; i++) {
+                        div_grupo2.innerHTML += `
+                            <div class="div-onibus">
+                                <div class="div-delete delete-onibus grupo2" onclick="abrirModalDelete(${veiculosGrupo2[i].fkGrupo}, ${veiculosGrupo2[i].fkVeiculo}, ${veiculosGrupo2[i].fkEmpresa}, '${veiculosGrupo2[i].veiculo}', '${veiculosGrupo2[i].grupo}')">
+                                    <i class="bi bi-trash"></i>
+                                </div>
 
-        <div class="div-linha">
-            <div class="linha-titulo">
-                <h2>Grupo estrutural</h2>
+                                <div class="div-img">
+                                    <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
+                                </div>
 
-                <div class="pencil-icon">
-                    <i class="bi bi-pencil"></i>
-                </div>
-            </div>
+                                <div class="div-title-onibus">
+                                    <h3>${veiculosGrupo2[i].veiculo}</h3>
+                                </div>
+                            </div>
+                        `;
+                    }
 
-            <div class="div-row-onibus">
-                <div class="div-onibus">
-                    <div class="div-img">
-                        <img src="../assets/tiposOnibus/basico.png" alt="imagem-onibus">
-                    </div>
+                    for (let i = 0; i < veiculosGrupo3.length; i++) {
+                        div_grupo3.innerHTML += `
+                            <div class="div-onibus">
+                                <div class="div-delete delete-onibus grupo3" onclick="abrirModalDelete(${veiculosGrupo3[i].fkGrupo}, ${veiculosGrupo3[i].fkVeiculo}, ${veiculosGrupo3[i].fkEmpresa}, '${veiculosGrupo3[i].veiculo}', '${veiculosGrupo3[i].grupo}')">
+                                    <i class="bi bi-trash"></i>
+                                </div>
 
-                    <div class="div-title-onibus">
-                        <h3>Básico</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                <div class="div-img">
+                                    <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
+                                </div>
 
-        <div class="div-linha">
-            <div class="linha-titulo">
-                <h2>Grupo articulacao regional</h2>
-
-                <div class="pencil-icon">
-                    <i class="bi bi-pencil"></i>
-                </div>
-            </div>
-
-            <div class="div-row-onibus">
-                <div class="div-onibus">
-                    <div class="div-img">
-                        <img src="../assets/tiposOnibus/articulado.png" alt="imagem-onibus">
-                    </div>
-
-                    <div class="div-title-onibus">
-                        <h3>Articulado</h3>
-                    </div>
-                </div>
-
-                <div class="div-onibus">
-                    <div class="div-img">
-                        <img src="../assets/tiposOnibus/biarticulado.png" alt="imagem-onibus">
-                    </div>
-
-                    <div class="div-title-onibus">
-                        <h3>Biarticulado</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+                                <div class="div-title-onibus">
+                                    <h3>${veiculosGrupo3[i].veiculo}</h3>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
+    });
 }
 
-function editarOnibus() {
-    const div_adicionar = document.getElementById("div_adicionar");
-    const icone_editar = document.getElementById("icone_editar");
-    const delete_onibus = document.getElementById("delete_onibus");
+function editarOnibus(idGrupo, icone_editar) {
+    const div_adicionar = document.querySelector(`.div_adicionar.grupo${idGrupo}`);
+    const mostrar = div_adicionar.style.display === "none" || div_adicionar.style.display === "";
 
-    if (div_adicionar.style.display == "none" || div_adicionar.style.display == "") {
-        icone_editar.innerHTML = `<i class="bi bi-check"></i>`;
-        div_adicionar.style.display = "flex";
-        delete_onibus.style.display = "flex";
-    } else {
-        div_adicionar.style.display = "none";
-        delete_onibus.style.display = "none";
-        icone_editar.innerHTML = `<i class="bi bi-pencil"></i>`;
-    }
+    div_adicionar.style.display = mostrar ? "flex" : "none";
+    icone_editar.innerHTML = mostrar ? `<i class="bi bi-check"></i>` : `<i class="bi bi-pencil"></i>`;
+
+    const deleteButtons = document.querySelectorAll(`.delete-onibus.grupo${idGrupo}`);
+    deleteButtons.forEach(btn => {
+        btn.style.display = mostrar ? "flex" : "none";
+    });
 }
 
 function abrirModal() {
@@ -122,21 +117,8 @@ function abrirModal() {
                     <div class="div-area-select">
                         <h3><b>Selecione o ônibus:</b></h3>
 
-                        <div class="div-select-onibus">
-                            <div class="div-onibus">
-                                <div class="div-img">
-                                    <img src="../assets/tiposOnibus/basico.png" alt="imagem-onibus">
-                                </div>
-
-                                <div class="div-title-onibus">
-                                    <h3>Básico</h3>
-                                </div>
-                            </div>
-
-                            <div class="div-info-onibus">
-                                <h3><b>Ônibus básico</b></h3>
-                                <h3><b>Assentos:</b> 40</h3>
-                            </div>
+                        <div class="div-select-onibus" id="selectVeiculo" onclick="listarVeiculos()">
+                            
                         </div>
 
                     </div>
@@ -154,7 +136,7 @@ function abrirModal() {
     }
 }
 
-function abrirModalDelete() {
+function abrirModalDelete(idGrupo, idVeiculo, idEmpresa, nomeVeiculo, nomeGrupo) {
     if (modal.style.display == "none" || modal.style.display == "") {
         modal.style.display = "flex";
         modal.innerHTML = `
@@ -167,13 +149,13 @@ function abrirModalDelete() {
 
                 <div class="body-modal">
                     <div class="div-area-select">
-                        <h3>Deseja <b>remover</b> veículo <b>"Miniônibus"</b> do grupo de Distribuição?</h3>
+                        <h3>Deseja <b>remover</b> veículo <b>"${nomeVeiculo}"</b> do ${nomeGrupo}?</h3>
                     </div>
                 </div>
 
                 <div class="footer-modal">
                     <button class="btn-cancelar" onclick="abrirModalDelete()">Cancelar</button>
-                    <button class="btn-add" onclick="removerOnibus()">Remover</button>
+                    <button class="btn-add" onclick="removerOnibus(${idGrupo}, ${idVeiculo}, ${idEmpresa})">Remover</button>
                 </div>
             </div>
         `;
@@ -187,7 +169,64 @@ function adicionarOnibus() {
     editarOnibus();
 }
 
-function removerOnibus() {
-    abrirModal();
-    editarOnibus();
+function removerOnibus(idGrupo, idVeiculo, idEmpresa) {
+    fetch(`/veiculos/deletar`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idGrupoServer: idGrupo,
+            idVeiculoServer: idVeiculo,
+            idEmpresaServer: idEmpresa,
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            location.reload();
+        } else {
+            abrirModal();
+            editarOnibus();
+            listarGrupos();
+            // alerta(`Houve um erro ao parar de seguir!`, 'erro');
+            throw "Houve um erro ao tentar remover!";
+        }
+    }).catch(function (erro) {
+        // alerta(`${erro}: Houve um erro interno ao remover!`, 'erro');
+        console.log(`#ERRO: ${erro}`);
+    });
+
+    return false;
+}
+
+function listarVeiculos() {
+    fetch(`/veiculos/listar/`).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (resposta) {
+                for (let i = 0; i < resposta.length; i++) {
+                    const veiculo = resposta[i];
+                    
+                    selectVeiculo.innerHTML += `
+                        <div class="div-onibus">
+                            <div class="div-img">
+                                <img src="../assets/tiposOnibus/basico.png" alt="imagem-onibus">
+                            </div>
+
+                            <div class="div-title-onibus">
+                                <h3>${veiculo.tipo}</h3>
+                            </div>
+                        </div>
+
+                        <div class="div-info-onibus">
+                            <h3><b>${veiculo.tipo}</b></h3>
+                            <h3><b>Assentos:</b> ${veiculo.capacidade}</h3>
+                        </div>
+                    `;
+                }
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
+    });
 }

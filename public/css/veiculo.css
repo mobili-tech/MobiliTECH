@@ -60,7 +60,7 @@
     align-items: center;
 }
 
-#div_adicionar {
+.div_adicionar {
     display: none;
     justify-content: center;
     align-items: center;
