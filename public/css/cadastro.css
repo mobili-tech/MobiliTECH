@@ -8,81 +8,134 @@ body {
   width: 100%;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
+html,
+body {
   font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
-.div_container{
-  width: 100%;
+.div_container {
   height: 100%;
+  width: 100%;
+}
+
+.titulo {
   display: flex;
+  justify-content: center;
 }
 
-.titulo{
-    display: flex;
-   
-    justify-content: center;
-    
-}
-
-.titulo_esquerda{
-    display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
-    width: 60%
-}
-
-.div_esquerda{
-    width: 35%;
-    height: 100%;
-    background: #221132;
-    background: linear-gradient(90deg, rgba(34, 17, 50, 1) 0%, rgba(69, 34, 101, 1) 50%, rgba(103, 52, 152, 1) 100%);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 35px;
-}
-
-.div_direita{
-      width: 65%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-}
-
-.div_conteudo{
+.titulo_esquerda {
   display: flex;
+  width: 60%;
+}
+
+.div_esquerda {
+  position: fixed;
+  width: 35%;
+  height: 100vh;
+  background: #221132;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 17, 50, 1) 0%,
+    rgba(69, 34, 101, 1) 50%,
+    rgba(103, 52, 152, 1) 100%
+  );
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 35px;
+}
+
+.div_direita {
+  margin-left: 35%;
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.div_conteudo {
+  display: flex;
+  gap: 2rem;
   flex-direction: column;
   font-weight: bold;
   font-size: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .div_conteudo_direita {
+  padding: 3rem 0;
   display: flex;
   flex-direction: column;
   width: 70%;
+  gap: 3rem;
 }
 
 .div_input > input {
-    padding-left: 10px;
-    height: 40px;
-    border-radius: 10px;
-    border: solid 2px #00000050;
-    background-color: #d9d9d950;
-    outline: none;
-    transition: 200ms;
-    display: flex;
-    flex-direction: column;
-}
-
-.div_input label {
-
-}
-
-.div_top {
+  padding-left: 10px;
+  width: 230px;
+  height: 40px;
+  border-radius: 10px;
+  border: solid 2px #00000050;
+  background-color: #d9d9d950;
+  outline: none;
+  transition: 200ms;
   display: flex;
+  flex-direction: column;
+}
+.div_titulo {
+  text-align: center;
+}
+
+.div_linhas {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.div_separacao {
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+.div_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.div_btn .btn_login a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.div_btn .btn_cadastrar {
+  text-decoration: none;
+  background: rgb(34, 17, 50);
+  background: linear-gradient(
+    90deg,
+    rgba(34, 17, 50, 1) 0%,
+    rgba(69, 34, 101, 1) 50%,
+    rgba(103, 52, 152, 1) 100%
+  );
+  width: 80%;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: #00000015 2px 3px 3px 0px;
+
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.div_btn span > a {
+  color: purple;
+  text-decoration: none;
+  font-weight: bold;
 }
