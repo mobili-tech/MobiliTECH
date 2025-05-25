@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="listarGrupos()">
+<body onload="listarLinhas()">
 
     <nav>
 
@@ -105,28 +105,29 @@
             </div>
 
             <div class="div-area-tabela">
-                <div class="div-tabela">
-                    <div class="header-tabela">
-                        <div class="div-opcao-header"><h3>Linha</h3></div>
-                        <div class="div-opcao-header"><h3>Empresa</h3></div>
-                        <div class="div-opcao-header"><h3>Grupo</h3></div>
-                        <div class="div-opcao-header"><h3>Passageiros</h3></div>
-                        <div class="div-opcao-header"><h3>Ocupação</h3></div>
-                        <div class="div-opcao-header ult">...</div>
-                    </div>
-
-                    <div class="linha-tabela">
-                        <div class="div-opcao-header"><span>2009-10</span></div>
-                        <div class="div-opcao-header"><span>Transunião</span></div>
-                        <div class="div-opcao-header"><span>Distribuição</span></div>
-                        <div class="div-opcao-header"><span>12.345</span></div>
-                        <div class="div-opcao-header"><span>Alta</span></div>
-                        <div class="div-opcao-header ult"><span>...</span></div>
-                    </div>
+                <div class="div-select-pagina">
+                    <input type="text" id="input_buscar" oninput="buscarLinha()">
                 </div>
 
-                <div class="div-select-pagina">
-                    <span>Pág. <span><</span> <span>1</span> <span>></span></span>
+                <div class="div-tabela" id="div_linhas">
+                    <div class="header-tabela">
+                        <div class="div-opcao-header">
+                            <h3>Linha</h3>
+                        </div>
+                        <div class="div-opcao-header">
+                            <h3>Empresa</h3>
+                        </div>
+                        <div class="div-opcao-header">
+                            <h3>Grupo</h3>
+                        </div>
+                        <div class="div-opcao-header">
+                            <h3>Passageiros</h3>
+                        </div>
+                        <div class="div-opcao-header">
+                            <h3>Ocupação</h3>
+                        </div>
+                        <div class="div-opcao-header ult"></div>
+                    </div>
                 </div>
             </div>
         </div>
