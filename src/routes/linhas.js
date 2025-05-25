@@ -15,4 +15,9 @@ router.get("/buscarLinha/:linha", function (req, res) {
     linhaController.buscarLinha(req, res);
 });
 
+router.post("/buscarVeiculoPorGrupo/:idGrupo", function (req, res) {
+    linhaController.buscarVeiculoPorGrupo(req, res);
+});
+
+
 module.exports = router;

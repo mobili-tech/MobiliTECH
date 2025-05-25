@@ -5,14 +5,24 @@ function listarLinhas() {
                 for (let i = 0; i < resposta.length; i++) {
                     const linha = resposta[i];
 
+                    var nivelOcupacao;
+
+                    if (linha.porcentagem <= 30) {
+                        nivelOcupacao = 'Baixa';
+                    } else if (linha.porcentagem < 90) {
+                        nivelOcupacao = 'Ideal';
+                    } else {
+                        nivelOcupacao = 'Alta';
+                    }
+
                     div_linhas.innerHTML += `
                         <div class="linha-tabela">
                             <div class="div-opcao-header"><span>${linha.numLinha}</span></div>
                             <div class="div-opcao-header"><span>${linha.empresa}</span></div>
                             <div class="div-opcao-header"><span>${linha.grupo}</span></div>
-                            <div class="div-opcao-header"><span>12.345</span></div>
+                            <div class="div-opcao-header"><span>${linha.soma}</span></div>
                             <div class="div-opcao-header"><span>Alta</span></div>
-                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha})"><span>...</span></div>
+                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha}, ${linha.idGrupo})"><span>...</span></div>
                         </div>
                     `;
                 }
@@ -25,7 +35,7 @@ function listarLinhas() {
     });
 }
 
-function abrirModal(idLinha) {
+function abrirModal(idLinha, idGrupo) {
     if (modal.style.display == "none" || modal.style.display == "") {
         modal.style.display = "flex";
 
@@ -49,25 +59,60 @@ function abrirModal(idLinha) {
                                         <h3><b>Viagens diárias: ${linha.qtdViagens}</b></h3>
                                     </div>
 
-                                    <div class="div-inf-modal">
-                                        <div class="column-onibus">
-                                            <div class="div-onibus">
-                                                <div class="div-img">
-                                                    <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
-                                                </div>
-
-                                                <div class="div-title-onibus">
-                                                    <h3></h3>
-                                                </div>
-                                            </div>
-                                            <div class="area-porcent">
-                                                118%<i class="bi bi-arrow-up"></i>
-                                            </div>
-                                        </div>
+                                    <div class="div-inf-modal" id="div_veiculo">
+                                        
                                     </div>
                                 </div>
                             </div>
                         `;
+                });
+
+                fetch(`/linhas/buscarVeiculoPorGrupo/${idGrupo}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        idEmpresaServer: sessionStorage.ID_EMPRESA,
+                        idLinhaServer: idLinha,
+                    }),
+                }).then(function (resposta) {
+                    if (resposta.ok) {
+                        resposta.json().then(function (resposta) {
+                            for (let i = 0; i < resposta.length; i++) {
+                                const veiculo = resposta[i];
+
+                                var simbolo;
+                                if (veiculo.porcentagem <= 30) {
+                                    simbolo = '<i class="bi bi-caret-down-fill" style="color: blue"></i>';
+                                } else if (veiculo.porcentagem < 90) {
+                                    simbolo = '<i class="bi bi-dash" style="color: green"></i>';
+                                } else {
+                                    simbolo = '<i class="bi bi-caret-up-fill" style="color: red"></i>';
+                                }
+
+                                div_veiculo.innerHTML += `
+                                    <div class="column-onibus">
+                                        <div class="div-onibus">
+                                            <div class="div-img">
+                                                <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
+                                            </div>
+
+                                            <div class="div-title-onibus">
+                                                <h3>${veiculo.veiculo}</h3>
+                                            </div>
+                                        </div>
+                                        <div class="area-porcent">
+                                            ${veiculo.porcentagem}%${simbolo}
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        });
+                    }
+                }).catch(function (erro) {
+                    // alerta(`${erro}: Houve um erro interno ao remover!`, 'erro');
+                    console.log(`#ERRO: ${erro}`);
                 });
             } else {
                 throw ('Houve um erro na API!');
@@ -148,7 +193,7 @@ function buscarLinha() {
                         </div>
                         <div class="div-opcao-header ult"></div>
                     </div>`;
-                    
+
         listarLinhas();
     }
 }
