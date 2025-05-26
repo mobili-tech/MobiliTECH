@@ -226,4 +226,5 @@
     align-items: center;
     font-size: 2rem;
     font-weight: bold;
+    flex-direction: column;
 }

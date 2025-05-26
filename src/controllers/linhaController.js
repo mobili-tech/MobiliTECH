@@ -52,8 +52,9 @@ function listarPorLinha(req, res) {
 
 function buscarLinha(req, res) {
     var linha = req.params.linha;
+    var idEmpresa = req.body.idEmpresaServer;
 
-    linhaModel.buscarLinha(linha)
+    linhaModel.buscarLinha(linha, idEmpresa)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -79,8 +80,10 @@ function buscarVeiculoPorGrupo(req, res) {
     var idGrupo = req.params.idGrupo;
     var idEmpresa = req.body.idEmpresaServer;
     var idLinha = req.body.idLinhaServer;
+    var dataInicio = req.body.dataInicioServer;
+    var dataFim = req.body.dataFimServer;
 
-    linhaModel.buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha)
+    linhaModel.buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {

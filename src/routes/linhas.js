@@ -11,7 +11,7 @@ router.get("/listarPorLinha/:idLinha", function (req, res) {
     linhaController.listarPorLinha(req, res);
 });
 
-router.get("/buscarLinha/:linha", function (req, res) {
+router.post("/buscarLinha/:linha", function (req, res) {
     linhaController.buscarLinha(req, res);
 });
 
