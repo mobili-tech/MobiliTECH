@@ -31,7 +31,7 @@ function listarGrupos() {
                                 </div>
 
                                 <div class="div-img">
-                                    <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
+                                    <img src="../assets/tiposOnibus/${veiculosGrupo1[i].fkVeiculo}.png" alt="imagem-onibus">
                                 </div>
 
                                 <div class="div-title-onibus">
@@ -49,7 +49,7 @@ function listarGrupos() {
                                 </div>
 
                                 <div class="div-img">
-                                    <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
+                                    <img src="../assets/tiposOnibus/${veiculosGrupo2[i].fkVeiculo}.png" alt="imagem-onibus">
                                 </div>
 
                                 <div class="div-title-onibus">
@@ -67,7 +67,7 @@ function listarGrupos() {
                                 </div>
 
                                 <div class="div-img">
-                                    <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
+                                    <img src="../assets/tiposOnibus/${veiculosGrupo3[i].fkVeiculo}.png" alt="imagem-onibus">
                                 </div>
 
                                 <div class="div-title-onibus">
@@ -99,9 +99,11 @@ function editarOnibus(idGrupo, icone_editar) {
     });
 }
 
-function abrirModal() {
+function abrirModal(idGrupo) {
     if (modal.style.display == "none" || modal.style.display == "") {
         modal.style.display = "flex";
+
+        listarVeiculos();
 
         modal.innerHTML = `
             <div class="div-modal">
@@ -117,7 +119,7 @@ function abrirModal() {
                     <div class="div-area-select">
                         <h3><b>Selecione o ônibus:</b></h3>
 
-                        <div class="div-select-onibus" id="selectVeiculo" onclick="listarVeiculos()">
+                        <div class="div-select-onibus" id="selectVeiculo">
                             
                         </div>
 
@@ -127,7 +129,7 @@ function abrirModal() {
 
                 <div class="footer-modal">
                     <button class="btn-cancelar" onclick="abrirModal()">Cancelar</button>
-                    <button class="btn-add" onclick="adicionarOnibus()">Adicionar</button>
+                    <button class="btn-add" onclick="adicionarOnibus(${idGrupo})">Adicionar</button>
                 </div>
             </div>
         `;
@@ -164,9 +166,32 @@ function abrirModalDelete(idGrupo, idVeiculo, idEmpresa, nomeVeiculo, nomeGrupo)
     }
 }
 
-function adicionarOnibus() {
-    abrirModal();
-    editarOnibus();
+function adicionarOnibus(idGrupo) {
+    if (onibusSelecionado == null) {
+        return false;
+    }
+
+    fetch(`/veiculos/cadastrar`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idEmpresaServer: sessionStorage.ID_EMPRESA,
+            idGrupoServer: idGrupo,
+            idVeiculoServer: onibusSelecionado,
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            location.reload();
+        }
+        abrirModal();
+        editarOnibus();
+
+    }).catch(function (erro) {
+        // alerta(`${erro}: Houve um erro interno ao remover!`, 'erro');
+        console.log(`#ERRO: ${erro}`);
+    });
 }
 
 function removerOnibus(idGrupo, idVeiculo, idEmpresa) {
@@ -198,27 +223,34 @@ function removerOnibus(idGrupo, idVeiculo, idEmpresa) {
     return false;
 }
 
+var onibusSelecionado;
+
+function obtemIdOnibus(idVeiculo) {
+    onibusSelecionado = idVeiculo;
+}
+
 function listarVeiculos() {
     fetch(`/veiculos/listar/`).then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then(function (resposta) {
                 for (let i = 0; i < resposta.length; i++) {
                     const veiculo = resposta[i];
-                    
+
                     selectVeiculo.innerHTML += `
-                        <div class="div-onibus">
-                            <div class="div-img">
-                                <img src="../assets/tiposOnibus/basico.png" alt="imagem-onibus">
+                        <div class="umOnibus" onclick="obtemIdOnibus(${veiculo.idVeiculo})">
+                            <div class="div-onibus">
+                                <div class="div-img">
+                                    <img src="../assets/tiposOnibus/${veiculo.idVeiculo}.png" alt="imagem-onibus">
+                                </div>
                             </div>
 
-                            <div class="div-title-onibus">
-                                <h3>${veiculo.tipo}</h3>
+                            <div class="div-info-onibus">
+                                <div class="div-title-onibus">
+                                    <h3>${veiculo.tipo}</h3>
+                                </div>
+                                <h3><b>${veiculo.tipo}</b></h3>
+                                <h3><b>Assentos:</b> ${veiculo.capacidade}</h3>
                             </div>
-                        </div>
-
-                        <div class="div-info-onibus">
-                            <h3><b>${veiculo.tipo}</b></h3>
-                            <h3><b>Assentos:</b> ${veiculo.capacidade}</h3>
                         </div>
                     `;
                 }

@@ -62,16 +62,16 @@ function abrirModal(idLinha, idGrupo) {
 
                                 <div class="body-modal">
                                     <div class="div-sup-modal">
-                                        <div style="display: flex;">
-                                            <label for="input_dataInicio">Data Inicio</label>
-                                            <input type="date" name="input_dataInicio" id="input_dataInicio">
-                                            <label for="input_dataFim">Data Fim</label>
-                                            <input type="date" name="input_dataFim" id="input_dataFim">
-                                            <button onclick="handle(${idLinha}, ${idGrupo})">aaaaaaaaaaa</button>
+                                        <span><b>Linha:</b> ${linha.numLinha} - ${linha.linha}</span>
+                                        <span><b>Grupo:</b> ${linha.grupo}</span>
+                                        <span><b>Viagens diárias:</b> ${linha.qtdViagens}</span>
+                                        <div class="div-data">
+                                            <label for="input_dataInicio"><b>Data Inicio: </b></label>
+                                            <input type="date" name="input_dataInicio" id="input_dataInicio" class="input-data">
+                                            <label for="input_dataFim"><b>Data Fim: </b></label>
+                                            <input type="date" name="input_dataFim" id="input_dataFim" class="input-data">
+                                            <button onclick="handle(${idLinha}, ${idGrupo})" class="btn-data"><i class="bi bi-search"></i></button>
                                         </div>
-                                        <h3><b>Linha: ${linha.numLinha} - ${linha.linha}</b></h3>
-                                        <h3><b>Grupo: ${linha.grupo}</b></h3>
-                                        <h3><b>Viagens diárias: ${linha.qtdViagens}</b></h3>
                                     </div>
 
                                     <div class="div-inf-modal" id="div_veiculo">
@@ -100,9 +100,8 @@ function abrirModal(idLinha, idGrupo) {
 }
 
 function buscarVeiculo(idLinha, idGrupo, dataInicio, dataFim) {
-    console.log(idGrupo)
-    console.log(dataInicio)
     div_veiculo.innerHTML = ``;
+    
     fetch(`/linhas/buscarVeiculoPorGrupo/${idGrupo}`, {
         method: "POST",
         headers: {
@@ -136,7 +135,7 @@ function buscarVeiculo(idLinha, idGrupo, dataInicio, dataFim) {
                             <div class="column-onibus">
                                 <div class="div-onibus">
                                     <div class="div-img">
-                                        <img src="../assets/tiposOnibus/minionibus.png" alt="imagem-onibus">
+                                        <img src="../assets/tiposOnibus/${veiculo.fkVeiculo}.png" alt="imagem-onibus">
                                     </div>
 
                                     <div class="div-title-onibus">
