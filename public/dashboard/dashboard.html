@@ -18,7 +18,7 @@
     rel="stylesheet">
 </head>
 
-<body>
+<body onload="validarSessao(), validarTipoUsuario('dashboard')">
 
   <nav>
 
@@ -35,7 +35,7 @@
             <p>DashBoards</p>
           </a>
 
-          <a class="itens-nav" href="#">
+          <a class="itens-nav" href="./linhas.html">
             <i class="bi bi-filter-left"></i>
             <p>Linhas</p>
           </a>
@@ -54,7 +54,7 @@
             <p>Perfil</p>
           </a>
 
-          <a class="itens-nav" href="../index.html">
+          <a class="itens-nav" onclick="limparSessao()">
             <i class="bi bi-box-arrow-right"></i>
             <p>Sair</p>
           </a>
@@ -272,3 +272,5 @@
   });
 
 </script>
+
+<script src="../js/sessao.js"></script>
