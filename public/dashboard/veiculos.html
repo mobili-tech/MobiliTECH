@@ -19,7 +19,9 @@
 </head>
 
 <body onload="validarSessao(), validarTipoUsuario('veiculo'), listarGrupos()">
+    <div id="div_alerta">
 
+    </div>
     <nav>
 
         <div class="container-navegacao">
@@ -124,7 +126,7 @@
             <div class="div-linha">
                 <div class="linha-titulo">
                     <h2>Grupo Estrutural</h2>
-                    
+
                     <div class="pencil-icon" id="pencil3" onclick="editarOnibus(3, this)">
                         <i class="bi bi-pencil"></i>
                     </div>
@@ -146,3 +148,4 @@
 
 <script src="../js/veiculos.js"></script>
 <script src="../js/sessao.js"></script>
+<script src="../js/alerta.js"></script>

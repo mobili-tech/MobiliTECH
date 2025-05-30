@@ -11,6 +11,28 @@ body {
   position: relative;
 }
 
+#div_alerta {
+    position: fixed;
+    width: fit-content;
+    height: 60px;
+    background-color: #fff;
+    bottom: 15px;
+    right: 15px;
+    z-index: 10;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.150);
+    display: none;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    gap: 25px;
+    color: #fff;
+}
+
+#div_alerta i {
+    font-size: 2rem;
+}
+
 .container-navegacao {
   background-color: #f7f5ff;
   width: 15vw;
@@ -23,9 +45,9 @@ body {
   font-weight: 700;
   position: fixed;
   border-radius: 0 15px 15px 0;
-  -webkit-box-shadow: 4px 4px 6px 0px rgba(71, 71, 71, 1);
-  -moz-box-shadow: 4px 4px 6px 0px rgba(71, 71, 71, 1);
-  box-shadow: 4px 4px 8px 0px rgba(71, 71, 71, 1);
+  /* -webkit-box-shadow: 4px 4px 6px 0px rgba(71, 71, 71, 1);
+  -moz-box-shadow: 4px 4px 6px 0px rgba(71, 71, 71, 1); */
+  box-shadow: 2px 2px 4px 0px rgba(71, 71, 71, 0.2);
 }
 
 .container-navegacao h2 {
