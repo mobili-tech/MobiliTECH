@@ -109,7 +109,7 @@ INSERT INTO empresa (codVerificacao, nomeFantasia, email, senha) VALUES
 ('ABCDE', 'TransUnião', 'empresa@empresa.com', '123'),
 ('12345', 'GatoPreto', 'gato@preto.com', '123');
 
-INSERT INTO funcionarios (nome, email, cargo, fkEmpresa) VALUES
+INSERT INTO funcionario (nome, email, cargo, fkEmpresa) VALUES
 ('João da Silva', 'joao@transsp.com', 'Gerente Operacional', 1),
 ('Maria Oliveira', 'maria@viaoeste.com', 'Coordenadora de Frota', 2);
 

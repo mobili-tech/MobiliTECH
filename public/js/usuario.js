@@ -16,10 +16,10 @@ function entrar() {
             console.log(resposta);
 
             resposta.json().then(json => {
-                sessionStorage.ID_USUARIO = json.idEmpresa;
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nomeFantasia;
+                sessionStorage.ID_USUARIO = json.id;
                 sessionStorage.ID_EMPRESA = json.idEmpresa;
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.CARGO_USUARIO = json.tipo;
                 setTimeout(function () {
                     window.location = "./dashboard/dashboard.html";
                 }, 1000);
