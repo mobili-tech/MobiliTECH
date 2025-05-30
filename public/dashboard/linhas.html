@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="listarLinhas()">
+<body onload="validarSessao(), validarTipoUsuario('linha'), listarLinhas()">
 
     <nav>
 
@@ -54,7 +54,7 @@
                         <p>Perfil</p>
                     </a>
 
-                    <a class="itens-nav" href="../index.html">
+                    <a class="itens-nav" onclick="limparSessao()">
                         <i class="bi bi-box-arrow-right"></i>
                         <p>Sair</p>
                     </a>
@@ -82,7 +82,7 @@
         </header>
         
         <div class="div-infos" id="div_infos">
-            <div class="div-area-kpi">
+            <div class="div-area-kpi" id="div_area_kpi">
                 <div class="div-kpi">
                     <h3>Linhas regulares</h3>
                     <div class="div-conteudo-kpi">
@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="div-area-tabela">
+            <div class="div-area-tabela" id="div_area_tabela">
                 <div class="div-select-pagina">
                     <span>Buscar linha: </span>
                     <input type="text" id="input_buscar" oninput="buscarLinha()">
@@ -137,3 +137,4 @@
 </html>
 
 <script src="../js/linha.js"></script>
+<script src="../js/sessao.js"></script>

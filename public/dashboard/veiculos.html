@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="listarGrupos()">
+<body onload="validarSessao(), validarTipoUsuario('veiculo'), listarGrupos()">
 
     <nav>
 
@@ -54,7 +54,7 @@
                         <p>Perfil</p>
                     </a>
 
-                    <a class="itens-nav" href="../index.html">
+                    <a class="itens-nav" onclick="limparSessao()">
                         <i class="bi bi-box-arrow-right"></i>
                         <p>Sair</p>
                     </a>
@@ -87,7 +87,7 @@
                 <div class="linha-titulo">
                     <h2>Grupo Articulação</h2>
 
-                    <div class="pencil-icon" onclick="editarOnibus(1, this)">
+                    <div class="pencil-icon" id="pencil1" onclick="editarOnibus(1, this)">
                         <i class="bi bi-pencil"></i>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                 <div class="linha-titulo">
                     <h2>Grupo Distribuicao</h2>
 
-                    <div class="pencil-icon" onclick="editarOnibus(2, this)">
+                    <div class="pencil-icon" id="pencil2" onclick="editarOnibus(2, this)">
                         <i class="bi bi-pencil"></i>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                 <div class="linha-titulo">
                     <h2>Grupo Estrutural</h2>
                     
-                    <div class="pencil-icon" onclick="editarOnibus(3, this)">
+                    <div class="pencil-icon" id="pencil3" onclick="editarOnibus(3, this)">
                         <i class="bi bi-pencil"></i>
                     </div>
                 </div>
@@ -145,3 +145,4 @@
 </html>
 
 <script src="../js/veiculos.js"></script>
+<script src="../js/sessao.js"></script>
