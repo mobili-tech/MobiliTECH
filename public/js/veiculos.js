@@ -106,7 +106,7 @@ function abrirModal(idGrupo) {
         listarVeiculos();
 
         modal.innerHTML = `
-            <div class="div-modal">
+            <div class="div-modal" style="height: 50%">
                 <div class="header-modal">
                     <h2>Adicionar veículo</h2>
 
@@ -142,7 +142,7 @@ function abrirModalDelete(idGrupo, idVeiculo, idEmpresa, nomeVeiculo, nomeGrupo)
     if (modal.style.display == "none" || modal.style.display == "") {
         modal.style.display = "flex";
         modal.innerHTML = `
-            <div class="div-modal" style="height: 30%; width: 40%; text-align: center;">
+            <div class="div-modal" style="height: 20%; width: 40%; text-align: center;">
                 <div class="header-modal">
                     <h2>Remover tipo de veículo</h2>
 
@@ -150,7 +150,7 @@ function abrirModalDelete(idGrupo, idVeiculo, idEmpresa, nomeVeiculo, nomeGrupo)
                 </div>
 
                 <div class="body-modal">
-                    <div class="div-area-select">
+                    <div class="div-area-select" style="height: 100%; justify-content: center">
                         <h3>Deseja <b>remover</b> veículo <b>"${nomeVeiculo}"</b> do ${nomeGrupo}?</h3>
                     </div>
                 </div>
@@ -225,8 +225,16 @@ function removerOnibus(idGrupo, idVeiculo, idEmpresa) {
 
 var onibusSelecionado;
 
-function obtemIdOnibus(idVeiculo) {
+function obtemIdOnibus(idVeiculo, event) {
     onibusSelecionado = idVeiculo;
+
+    const todosOnibus = document.querySelectorAll(".umOnibus");
+    todosOnibus.forEach(onibus => {
+        onibus.classList.remove("onibus-selecionado");
+    });
+
+    const clicado = event.currentTarget;
+    clicado.classList.add("onibus-selecionado");
 }
 
 function listarVeiculos() {
@@ -237,7 +245,7 @@ function listarVeiculos() {
                     const veiculo = resposta[i];
 
                     selectVeiculo.innerHTML += `
-                        <div class="umOnibus" onclick="obtemIdOnibus(${veiculo.idVeiculo})">
+                        <div class="umOnibus" onclick="obtemIdOnibus(${veiculo.idVeiculo}, event)">
                             <div class="div-onibus">
                                 <div class="div-img">
                                     <img src="../assets/tiposOnibus/${veiculo.idVeiculo}.png" alt="imagem-onibus">
