@@ -1,4 +1,6 @@
-
+body {
+    overflow-x: hidden;
+}
 
 .div-linha {
     display: flex;
@@ -16,17 +18,21 @@
 .linha-titulo .pencil-icon {
     height: 2rem;
     width: 2rem;
-    border: solid 2px blue;
+    border: solid 2px #fe5000;
+    color: #fe5000;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
+    cursor: pointer;
 }
 
 .div-row-onibus {
     padding: 15px 0;
     display: flex;
+    width: 100%;
     gap: 25px;
+    overflow: auto;
 }
 
 .div-onibus {
@@ -35,8 +41,9 @@
     border-radius: 10px;
     background-color: #ffffff;
     border: solid 1px #00000050;
-    box-shadow: 0px 0px 10px #00000025;
+    box-shadow: 0px 0px 10px #00000020;
     position: relative;
+    /* cursor: pointer; */
 }
 
 .div-img {
@@ -59,7 +66,7 @@
     align-items: center;
 }
 
-#div_adicionar {
+.div_adicionar {
     display: none;
     justify-content: center;
     align-items: center;
@@ -75,6 +82,7 @@
     justify-content: center;
     align-items: center ;
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .div-delete {
@@ -88,13 +96,14 @@
     color: red;
     background-color: #00000050;
     border-radius: 7px;
+    cursor: pointer;
 }
 
-.fundo-modal-adicionar {
+.fundo-modal {
     z-index: 1;
     position: absolute;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #00000050;
     display: none;
     justify-content: center;
@@ -103,6 +112,117 @@
 
 .div-modal {
     background: #ffffff;
-    height: 70%;
-    width: 70%;
+    height: 65%;
+    width: 65%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
 }
+
+.div-modal .header-modal {
+    height: 15%;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-modal .header-modal button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+.div-modal .body-modal {
+    height: 70%;
+    width: 95%;
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.div-modal .footer-modal {
+    height: 15%;
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.div-modal .footer-modal button {
+    height: 40px;
+    width: 20%;
+    border-radius: 50px;
+    border: none;
+    font-weight: bolder;
+    background: none;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.div-modal .footer-modal .btn-cancelar {
+    border: dashed 2px #00000050;
+    color: #00000090;
+}
+
+.div-modal .footer-modal .btn-add {
+    background-color: #fe5000;
+    color: #fff;
+}
+
+.div-area-select {
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.div-select-onibus {
+    width: 100%;
+    height: 75%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #00000020;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: solid 1px #00000050;
+    background-color: #fff;
+    cursor: pointer;
+    overflow: auto;
+}
+
+.div-info-onibus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: max-content;
+    gap: 2rem;
+    height: 100%;
+    margin-left: 1rem;
+}
+
+.umOnibus {
+    display: flex;
+    border: solid 1px #00000020;
+    border-radius: 10px;
+    background-color: #FBFBFB;
+}
+
+.onibus-selecionado {
+    border: 2px solid #fe5000;
+    box-shadow: 0px 0px 10px #00000020;}

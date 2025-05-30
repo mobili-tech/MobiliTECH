@@ -110,7 +110,7 @@ main {
 /* HEADER MAIN */
 .header-main {
   display: flex;
-  height: 150px;
+  height: 125px;
   display: flex;
   justify-content: space-between;
   align-items: center;

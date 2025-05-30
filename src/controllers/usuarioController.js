@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -12,44 +11,49 @@ function autenticar(req, res) {
     } else {
 
         usuarioModel.autenticar(email, senha)
-            .then(
-                function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+            .then(function (resultadoAutenticar) {
+                console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`);
 
-                    if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
+                if (resultadoAutenticar.length == 1) {
+                    const usuario = resultadoAutenticar[0];
 
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        aquarios: resultadoAquarios
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            })
-                    } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
+                    if (usuario.tipo === "empresa") {
+                        res.json({
+                            tipo: "empresa",
+                            id: usuario.id,
+                            email: usuario.email,
+                            idEmpresa: usuario.id,
+                            cnpj: usuario.cnpj,
+                            razaoSocial: usuario.razaoSocial,
+                            nomeFantasia: usuario.nome
+                        });
+                    } else if (usuario.tipo === "funcionario") {
+                        res.json({
+                            tipo: usuario.cargo,
+                            id: usuario.id,
+                            email: usuario.email,
+                            nome: usuario.nome,
+                            idEmpresa: usuario.idEmpresaOrigem
+                        });
                     } else {
-                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                        res.status(500).send("Tipo de usuário desconhecido");
                     }
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
 
+                } else if (resultadoAutenticar.length == 0) {
+                    res.status(403).send("Email e/ou senha inválido(s)");
+                } else {
+                    res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
 }
+
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
