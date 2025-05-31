@@ -2,47 +2,136 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="./css/login-cadastro.css">
+  <link rel="stylesheet" href="./css/cadastro.css" />
 
-    <!-- FONTE -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
 </head>
 
 <body>
-    <div class="div_esquerda div_esquerda_cadastrar">
-        <h1 class="titulo_esquerda titulo_esquerda_cadastrar">SEJA BEM-VINDO</h1>
+
+  <div class="div_container">
+
+    <div class="div_esquerda">
+
+      <div class="titulo">
+        <h1 class="titulo_esquerda">SEJA BEM-VINDO</h1>
+      </div>
+
     </div>
+
 
     <div class="div_direita">
-        <div class="div_conteudo_direita">
-            <h1>CADASTRAR EMPRESA</h1>
+
+      <div class="div_conteudo_direita">
+
+        <div class="div_titulo">
+          <h1>CADASTRAR EMPRESA</h1>
+        </div>
+
+        <div class="div_conteudo">
+
+          <div class="div_linhas">
 
             <div class="div_input">
-                <label for="input_email">E-mail</label>
-                <input type="email" id="input_email" name="input_email">
+              <label for="input_razao_social">Razão Social</label>
+              <input type="text" id="input_razao_social" name="input_razao_social" />
             </div>
 
             <div class="div_input">
-                <label for="input_senha">Senha</label>
-                <input type="password" id="input_senha" name="input_senha">
+              <label for="input_nome">Nome Fantasia</label>
+              <input type="text" id="input_nome" name="input_nome" />
             </div>
 
-            <div class="div_btn">
-                <button class="btn_login">ENTRAR</button>
-                <span>Ainda não possui cadastro? <a href="./cadastro.html">Cadastrar</a></span>
+          </div>
+
+          <div class="div_linhas">
+
+            <div class="div_input">
+              <label for="input_cnpj">CNPJ</label>
+              <input type="text" id="input_cnpj" name="input_cnpj" />
             </div>
+
+          </div>
+
+          <div class="div_separacao"></div>
+
+          <div class="div_linhas">
+
+            <div class="div_input">
+              <label for="input_cep">CEP</label>
+              <input type="text" id="input_cep" name="input_cep" />
+            </div>
+
+            <div class="div_input">
+              <label for="input_cidade">Cidade</label>
+              <input type="text" id="input_cidade" name="input_cidade" />
+            </div>
+
+          </div>
+
+          <div class="div_linhas">
+
+            <div class="div_input">
+              <label for="input_logradouro">Logradouro</label>
+              <input type="text" id="input_logradouro" name="input_logradouro" />
+            </div>
+
+            <div class="div_input">
+              <label for="input_numero">Numero</label>
+              <input type="number" id="input_numero" name="input_numero" />
+            </div>
+
+          </div>
+
+          <div class="div_linhas">
+
+            <div class="div_input">
+              <label for="input_complemento">Complemento</label>
+              <input type="email" id="input_complemento" name="input_complemento" />
+            </div>
+
+            <div class="div_input">
+              <label for="input_bairro">Bairro</label>
+              <input type="text" id="input_bairro" name="input_bairro" />
+            </div>
+
+          </div>
+
+          <div class="div_separacao"></div>
+
+          <div class="div_linhas">
+
+            <div class="div_input">
+              <label for="input_email">E-mail</label>
+              <input type="email" id="input_email" name="input_email" />
+            </div>
+
+            <div class="div_input">
+              <label for="input_senha">Senha</label>
+              <input type="password" id="input_senha" name="input_senha" />
+            </div>
+
+          </div>
 
         </div>
+
+        <div class="div_btn">
+          <button class="btn_cadastrar">CADASTRAR</button>
+          <span>Já possui cadastro?
+            <a href="./login.html">Entrar</a></span>
+        </div>
+      </div>
     </div>
+  </div>
+  </div>
 </body>
 
 </html>

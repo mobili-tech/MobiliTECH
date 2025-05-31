@@ -1,14 +1,12 @@
 // sessão
 function validarSessao() {
+    var cargo = sessionStorage.CARGO_USUARIO;
     var email = sessionStorage.EMAIL_USUARIO;
-    var nome = sessionStorage.NOME_USUARIO;
+    var idEmpresa = sessionStorage.ID_EMPRESA;
+    var idUsuario = sessionStorage.ID_USUARIO;
 
-    var b_usuario = document.getElementById("b_usuario");
-
-    if (email != null && nome != null) {
-        b_usuario.innerHTML = nome;
-    } else {
-        window.location = "../login.html";
+    if (cargo == null || email == null || idEmpresa == null || idUsuario == null) {
+        limparSessao();
     }
 }
 
@@ -17,20 +15,19 @@ function limparSessao() {
     window.location = "../login.html";
 }
 
-// carregamento (loading)
-function aguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "flex";
-}
+function validarTipoUsuario(pagina) {
+    var cargo = sessionStorage.CARGO_USUARIO;
 
-function finalizarAguardar(texto) {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "none";
+    if (cargo == "Analista de Frota") {
+        if (pagina == "veiculo") {
+            pencil1.style.display = "none";
+            pencil2.style.display = "none";
+            pencil3.style.display = "none";
+        }
 
-    var divErrosLogin = document.getElementById("div_erros_login");
-    if (texto) {
-        divErrosLogin.style.display = "flex";
-        divErrosLogin.innerHTML = texto;
+        if (pagina == "linha") {
+            div_area_kpi.style.display = "none";
+            div_area_tabela.style.height = "75vh";
+        }
     }
 }
-

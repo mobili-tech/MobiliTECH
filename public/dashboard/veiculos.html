@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="listarGrupos()">
+<body onload="validarSessao(), validarTipoUsuario('veiculo'), listarGrupos()">
 
     <nav>
 
@@ -59,7 +59,7 @@
                         <p>Perfil</p>
                     </a>
 
-                    <a class="itens-nav" href="../index.html">
+                    <a class="itens-nav" onclick="limparSessao()">
                         <i class="bi bi-box-arrow-right"></i>
                         <p>Sair</p>
                     </a>
@@ -92,7 +92,7 @@
                 <div class="linha-titulo">
                     <h2>Grupo Articulação</h2>
 
-                    <div class="pencil-icon" onclick="editarOnibus(1, this)">
+                    <div class="pencil-icon" id="pencil1" onclick="editarOnibus(1, this)">
                         <i class="bi bi-pencil"></i>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                 <div class="div-row-onibus" id="div_grupo1">
 
                     <div class="div-onibus div_adicionar grupo1">
-                        <div class="add-icon" onclick="abrirModal()">
+                        <div class="add-icon" onclick="abrirModal(1)">
                             <i class="bi bi-plus"></i>
                         </div>
                     </div>
@@ -111,15 +111,15 @@
                 <div class="linha-titulo">
                     <h2>Grupo Distribuicao</h2>
 
-                    <div class="pencil-icon" onclick="editarOnibus(3, this)">
+                    <div class="pencil-icon" id="pencil2" onclick="editarOnibus(2, this)">
                         <i class="bi bi-pencil"></i>
                     </div>
                 </div>
 
-                <div class="div-row-onibus" id="div_grupo3">
+                <div class="div-row-onibus" id="div_grupo2">
 
-                    <div class="div-onibus div_adicionar grupo3">
-                        <div class="add-icon" onclick="abrirModal()">
+                    <div class="div-onibus div_adicionar grupo2">
+                        <div class="add-icon" onclick="abrirModal(2)">
                             <i class="bi bi-plus"></i>
                         </div>
                     </div>
@@ -129,16 +129,15 @@
             <div class="div-linha">
                 <div class="linha-titulo">
                     <h2>Grupo Estrutural</h2>
-
-                    <div class="pencil-icon" onclick="editarOnibus(2, this)">
+                    
+                    <div class="pencil-icon" id="pencil3" onclick="editarOnibus(3, this)">
                         <i class="bi bi-pencil"></i>
                     </div>
                 </div>
 
-                <div class="div-row-onibus" id="div_grupo2">
-
-                    <div class="div-onibus div_adicionar grupo2">
-                        <div class="add-icon" onclick="abrirModal()">
+                <div class="div-row-onibus" id="div_grupo3">
+                    <div class="div-onibus div_adicionar grupo3">
+                        <div class="add-icon" onclick="abrirModal(3)">
                             <i class="bi bi-plus"></i>
                         </div>
                     </div>
@@ -151,3 +150,4 @@
 </html>
 
 <script src="../js/veiculos.js"></script>
+<script src="../js/sessao.js"></script>
