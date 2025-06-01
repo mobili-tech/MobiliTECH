@@ -12,7 +12,10 @@ function listarFuncionarios() {
                             <div class="div-opcao-header"><span>${funcionario.nome}</span></div>
                             <div class="div-opcao-header"><span>${funcionario.email}</span></div>
                             <div class="div-opcao-header"><span>${funcionario.cargo}</span></div>
-                            <div class="div-opcao-header ult" onclick="abrirModal(${funcionario.idFuncionario})"><span>...</span></div>
+                            <div class="div-opcao-header ult" onclick="abrirModal(${funcionario.idFuncionario})"><span>
+                                            <i class="bi bi-pencil" style="font-size: 1rem;"></i>
+                                            </span>
+                            </div>
                         </div>
                     `;
           }
@@ -50,17 +53,24 @@ function abrirModal(idFuncionario) {
 
                                 <div class="body-modal">
                                     <div class="div-sup-modal">
-                                        <span><b>Nome:</b> ${funcionario.nome}</span>
-                                        <span><b>Email:</b> ${funcionario.email}</span>
-                                        <span><b>Cargo:</b> ${funcionario.cargo}</span>
+                                        <span><b>Nome:</b> </span>
+                                        <input type="text" id="editar_nome" class="ipt_edit" >
+                                        <span><b>Email:</b> </span>
+                                        <input type="text" id="editar_email" class="ipt_edit">
+                                        <span><b>Cargo:</b> </span>
+                                        <input type="text" id="editar_cargo" class="ipt_edit">
+                                    </div>
+                                    
+                                     <div class="div_btn_gravar">
+                                        <button id="btn_gravar_edit" class="btn_gravar">Gravar</button>
                                     </div>
                                 </div>
                             </div>
                         `;
 
-            var dataInicio = input_dataInicio.value;
-            var dataFim = input_dataFim.value;
-            buscarVeiculo(idLinha, idGrupo, dataInicio, dataFim);
+            editar_nome.value = funcionario.nome;
+            editar_email.value = funcionario.email;
+            editar_cargo.value = funcionario.cargo;
           });
         } else {
           throw "Houve um erro na API!";
@@ -73,12 +83,10 @@ function abrirModal(idFuncionario) {
 }
 
 function buscarFuncionario() {
-  console.log("passando no js");
-
   funcionario = input_buscar.value;
 
-  if (linha.length >= 3) {
-    fetch(`/Funcionario/buscarFuncionario/${funcionario}`, {
+  if (funcionario.length >= 1) {
+    fetch(`/funcionario/buscarFuncionario/${funcionario}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -109,16 +117,15 @@ function buscarFuncionario() {
                 </div>`;
 
             for (let i = 0; i < resposta.length; i++) {
-              const linha = resposta[i];
+              const funcionario = resposta[i];
 
               div_linhas.innerHTML += `
                         <div class="linha-tabela">
-                            <div class="div-opcao-header"><span>${linha.numLinha}</span></div>
-                            <div class="div-opcao-header"><span>${linha.empresa}</span></div>
-                            <div class="div-opcao-header"><span>${linha.grupo}</span></div>
-                            <div class="div-opcao-header"><span>${linha.soma}</span></div>
-                            <div class="div-opcao-header"><span>Alta</span></div>
-                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha})"><span>...</span></div>
+                            <div class="div-opcao-header"><span>${funcionario.idFuncionario}</span></div>
+                            <div class="div-opcao-header"><span>${funcionario.nome}</span></div>
+                            <div class="div-opcao-header"><span>${funcionario.email}</span></div>
+                            <div class="div-opcao-header"><span>${funcionario.cargo}</span></div>
+                            <div class="div-opcao-header ult" onclick="abrirModal(${funcionario.idFuncionario})"><span>...</span></div>
                         </div>
                     `;
             }
@@ -132,25 +139,22 @@ function buscarFuncionario() {
       });
   } else {
     div_linhas.innerHTML = `
-                    <div class="header-tabela">
-                        <div class="div-opcao-header">
-                            <h3>Linha</h3>
-                        </div>
-                        <div class="div-opcao-header">
-                            <h3>Empresa</h3>
-                        </div>
-                        <div class="div-opcao-header">
-                            <h3>Grupo</h3>
-                        </div>
-                        <div class="div-opcao-header">
-                            <h3>Passageiros</h3>
-                        </div>
-                        <div class="div-opcao-header">
-                            <h3>Ocupação</h3>
-                        </div>
-                        <div class="div-opcao-header ult"></div>
-                    </div>`;
+                <div class="header-tabela">
+                    <div class="div-opcao-header">
+                        <h3>ID</h3>
+                    </div>
+                    <div class="div-opcao-header">
+                        <h3>Nome</h3>
+                    </div>
+                    <div class="div-opcao-header">
+                        <h3>E-mail</h3>
+                    </div>
+                    <div class="div-opcao-header">
+                        <h3>Cargo</h3>
+                    </div>
+                    <div class="div-opcao-header ult"></div>
 
-    listarLinhas();
+                </div>`;
+    listarFuncionarios();
   }
 }

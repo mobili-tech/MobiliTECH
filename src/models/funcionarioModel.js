@@ -45,7 +45,7 @@ function buscarFuncionario(funcionario, idEmpresa) {
             cargo 
         FROM funcionario
             where fkEmpresa = ${idEmpresa} 
-            AND nome LIKE ${funcionario}; 
+            AND nome LIKE '%${funcionario}%'; 
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

@@ -11,7 +11,7 @@ router.get("/listarFuncionario/:idFuncionario", function (req, res) {
     funcionarioRouter.listarFuncionario(req, res);
 });
 
-router.post("/buscarFuncionario/:Funcionario", function (req, res) {
+router.post("/buscarFuncionario/:funcionario", function (req, res) {
     funcionarioRouter.buscarFuncionario(req, res);
 });
 

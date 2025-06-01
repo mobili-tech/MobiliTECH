@@ -51,7 +51,7 @@ function listarFuncionario(req, res) {
 }
 
 function buscarFuncionario(req, res) {
-    var funcionario = req.params.nome;
+    var funcionario = req.params.funcionario;
     var idEmpresa = req.body.idEmpresaServer;
 
     funcionarioModel.buscarFuncionario(funcionario, idEmpresa)
