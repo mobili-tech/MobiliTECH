@@ -87,6 +87,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  cursor: pointer;
 }
 
 .selecionado {

@@ -100,9 +100,10 @@ body {
 
   gap: 10px;
 }
-.div_btn .btn_login a {
+.div_btn .btn_login {
   text-decoration: none;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .div_btn .btn_login {

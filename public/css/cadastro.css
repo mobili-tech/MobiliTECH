@@ -26,6 +26,7 @@ body {
 .titulo_esquerda {
   display: flex;
   width: 60%;
+  text-align: start;
 }
 
 .div_esquerda {
@@ -54,6 +55,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 5rem;
+  height: 100vh;
 }
 
 .div_conteudo {
@@ -64,6 +66,25 @@ body {
   font-size: 20px;
   justify-content: center;
   align-items: center;
+}
+
+#div_identificador {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#div_identificador .div_btn {
+  margin-top: 2rem;
+}
+
+#div_conteudo {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  width: 80%;
 }
 
 .div_conteudo_direita {
