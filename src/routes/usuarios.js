@@ -12,4 +12,12 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/buscarEmpresaPorIdentificador/:identificador", function (req, res) {
+    usuarioController.buscarEmpresaPorIdentificador(req, res);
+});
+
+router.put("/cadastrarEmpresa", function (req, res) {
+    usuarioController.cadastrarEmpresa(req, res);
+})
+
 module.exports = router;
