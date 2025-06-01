@@ -183,13 +183,19 @@ function adicionarOnibus(idGrupo) {
         }),
     }).then(function (resposta) {
         if (resposta.ok) {
-            location.reload();
+            alerta('Novo veiculo adicionado', 'sucesso');
+
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        } else {
+            abrirModal();
+            editarOnibus();
+            alerta('Houve um erro ao adicionar', 'erro');
         }
-        abrirModal();
-        editarOnibus();
 
     }).catch(function (erro) {
-        // alerta(`${erro}: Houve um erro interno ao remover!`, 'erro');
+        alerta(`${erro}: Houve um erro interno ao adicionar!`, 'erro');
         console.log(`#ERRO: ${erro}`);
     });
 }
@@ -207,12 +213,16 @@ function removerOnibus(idGrupo, idVeiculo, idEmpresa) {
         }),
     }).then(function (resposta) {
         if (resposta.ok) {
-            location.reload();
+            alerta('Veículo removido', 'sucesso');
+
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
         } else {
             abrirModal();
             editarOnibus();
             listarGrupos();
-            // alerta(`Houve um erro ao parar de seguir!`, 'erro');
+            alerta('Houve um erro ao remover', 'erro');
             throw "Houve um erro ao tentar remover!";
         }
     }).catch(function (erro) {

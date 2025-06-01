@@ -17,12 +17,12 @@ function listarLinhas() {
 
                     div_linhas.innerHTML += `
                         <div class="linha-tabela">
-                            <div class="div-opcao-header"><span>${linha.numLinha}</span></div>
+                            <div class="div-opcao-header"><span>${linha.linha}</span></div>
                             <div class="div-opcao-header"><span>${linha.empresa}</span></div>
                             <div class="div-opcao-header"><span>${linha.grupo}</span></div>
                             <div class="div-opcao-header"><span>${linha.soma}</span></div>
                             <div class="div-opcao-header"><span>Alta</span></div>
-                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha}, ${linha.idGrupo})"><span>...</span></div>
+                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha}, ${linha.idGrupo})"><i class="bi bi-eye-fill"></i></div>
                         </div>
                     `;
                 }
@@ -62,7 +62,7 @@ function abrirModal(idLinha, idGrupo) {
 
                                 <div class="body-modal">
                                     <div class="div-sup-modal">
-                                        <span><b>Linha:</b> ${linha.numLinha} - ${linha.linha}</span>
+                                        <span><b>Linha:</b> ${linha.linha}</span>
                                         <span><b>Grupo:</b> ${linha.grupo}</span>
                                         <span><b>Viagens diárias:</b> ${linha.qtdViagens}</span>
                                         <div class="div-data">
@@ -199,12 +199,12 @@ function buscarLinha() {
 
                         div_linhas.innerHTML += `
                         <div class="linha-tabela">
-                            <div class="div-opcao-header"><span>${linha.numLinha}</span></div>
+                            <div class="div-opcao-header"><span>${linha.linha}</span></div>
                             <div class="div-opcao-header"><span>${linha.empresa}</span></div>
                             <div class="div-opcao-header"><span>${linha.grupo}</span></div>
                             <div class="div-opcao-header"><span>${linha.soma}</span></div>
                             <div class="div-opcao-header"><span>Alta</span></div>
-                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha})"><span>...</span></div>
+                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha})"><i class="bi bi-eye-fill"></i></div>
                         </div>
                     `;
                     }
