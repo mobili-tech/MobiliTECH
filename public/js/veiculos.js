@@ -185,6 +185,9 @@ function adicionarOnibus(idGrupo) {
         if (resposta.ok) {
             alerta('Novo veiculo adicionado', 'sucesso');
 
+            const nomeGrupo = idGrupo == 3 ? "Estrutural" : idGrupo == 1 ? "Articulado" : idGrupo == 2 ? "Distribuição" : "Desconhecido";
+            notificarSlack("ação", `Adicionou veículo ${onibusSelecionado} ao grupo ${nomeGrupo}.`);
+
             setTimeout(() => {
                 location.reload();
             }, 1000);
@@ -214,6 +217,8 @@ function removerOnibus(idGrupo, idVeiculo, idEmpresa) {
     }).then(function (resposta) {
         if (resposta.ok) {
             alerta('Veículo removido', 'sucesso');
+            const nomeGrupo = idGrupo == 3 ? "Estrutural" : idGrupo == 1 ? "Articulado" : idGrupo == 2 ? "Distribuição" : "Desconhecido";
+            notificarSlack("ação", `Removeu o veículo ${idVeiculo} ao grupo ${nomeGrupo}.`);
 
             setTimeout(() => {
                 location.reload();
