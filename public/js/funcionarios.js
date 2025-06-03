@@ -1,3 +1,5 @@
+const { get } = require("../../src/routes/funcionario");
+
 function listarFuncionarios() {
   fetch(`/funcionario/listarPorEmpresa/${sessionStorage.ID_EMPRESA}`)
     .then(function (resposta) {
@@ -62,7 +64,7 @@ function abrirModal(idFuncionario) {
                                     </div>
                                     
                                      <div class="div_btn_gravar">
-                                        <button id="btn_gravar_edit" class="btn_gravar">Gravar</button>
+                                        <button id="btn_gravar_edit" class="btn_gravar" onclick="editarFuncionario(${idFuncionario})">Gravar</button>
                                     </div>
                                 </div>
                             </div>
@@ -80,6 +82,96 @@ function abrirModal(idFuncionario) {
         console.error(resposta);
       });
   }
+}
+
+function modalAddFuncionario() {
+  if (modal.style.display == "none" || modal.style.display == "") {
+    modal.style.display = "flex";
+    modal.innerHTML = `
+                            <div class="div-modal">
+                                <div class="header-modal">
+                                    <h2>Informações sobre o funcionario</h2>
+
+                                    <button onclick="fecharModal()">X</button>
+                                </div>
+
+                                <div class="body-modal">
+                                    <div class="div-sup-modal">
+                                        <span><b>Nome:</b> </span>
+                                        <input type="text" id="editar_nome" class="ipt_edit" >
+                                        <span><b>Email:</b> </span>
+                                        <input type="text" id="editar_email" class="ipt_edit">
+                                        <span><b>Cargo:</b> </span>
+                                        <input type="text" id="editar_cargo" class="ipt_edit">
+                                    </div>
+                                    
+                                     <div class="div_btn_gravar">
+                                        <button id="btn_gravar_edit" class="btn_gravar" onclick="editarFuncionario(${idFuncionario})">Gravar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+    editar_nome.value = funcionario.nome;
+    editar_email.value = funcionario.email;
+    editar_cargo.value = funcionario.cargo;
+  }
+}
+
+function cadastrarFuncionario() {
+  const nome = document.getElementById("editar_nome");
+  const email = document.getElementById("editar_email");
+  const cargo = document.getElementById("editar_cargo");
+
+  fetch(`/funcionario/editar`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idFuncionario: idFuncionario,
+      nome: nome.value,
+      email: email.value,
+      cargo: cargo.value,
+    }),
+  })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        location.reload();
+      }
+      abrirModal();
+    })
+    .catch(function (erro) {
+      console.log(`#ERRO: ${erro}`);
+    });
+}
+
+function editarFuncionario(idFuncionario) {
+  const nome = document.getElementById("editar_nome");
+  const email = document.getElementById("editar_email");
+  const cargo = document.getElementById("editar_cargo");
+
+  fetch(`/funcionario/editar`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idFuncionario: idFuncionario,
+      nome: nome.value,
+      email: email.value,
+      cargo: cargo.value,
+    }),
+  })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        location.reload();
+      }
+      abrirModal();
+    })
+    .catch(function (erro) {
+      console.log(`#ERRO: ${erro}`);
+    });
 }
 
 function buscarFuncionario() {
