@@ -185,8 +185,12 @@ function adicionarOnibus(idGrupo) {
         if (resposta.ok) {
             alerta('Novo veiculo adicionado', 'sucesso');
 
-            const nomeGrupo = idGrupo == 3 ? "Estrutural" : idGrupo == 1 ? "Articulado" : idGrupo == 2 ? "Distribuição" : "Desconhecido";
-            notificarSlack("ação", `Adicionou veículo ${onibusSelecionado} ao grupo ${nomeGrupo}.`);
+            var nomeGrupo = idGrupo == 3 ? "Estrutural" : idGrupo == 1 ? "Articulado" : idGrupo == 2 ? "Distribuição" : "Desconhecido";
+
+            var nomeVeiculo = onibusSelecionado == 1 ? "Ônibus Articulado" : onibusSelecionado == 2 ? "Miniônibus" : onibusSelecionado == 3 ? "Ônibus Convencional"
+             : onibusSelecionado == 4 ? "Ônibus Biarticulado" : onibusSelecionado == 5 ? "Ônibus Padron" : onibusSelecionado == 6 ? "Ônibus Trolébus" : "Desconhecido";
+
+            notificarSlack("ação", `Adicionou ${nomeVeiculo} ao grupo ${nomeGrupo}.`);
 
             setTimeout(() => {
                 location.reload();
@@ -217,8 +221,13 @@ function removerOnibus(idGrupo, idVeiculo, idEmpresa) {
     }).then(function (resposta) {
         if (resposta.ok) {
             alerta('Veículo removido', 'sucesso');
-            const nomeGrupo = idGrupo == 3 ? "Estrutural" : idGrupo == 1 ? "Articulado" : idGrupo == 2 ? "Distribuição" : "Desconhecido";
-            notificarSlack("ação", `Removeu o veículo ${idVeiculo} ao grupo ${nomeGrupo}.`);
+
+            var nomeGrupo = idGrupo == 3 ? "Estrutural" : idGrupo == 1 ? "Articulado" : idGrupo == 2 ? "Distribuição" : "Desconhecido";
+
+            var nomeVeiculo = idVeiculo == 1 ? "Ônibus Articulado" : idVeiculo == 2 ? "Miniônibus" : idVeiculo == 3 ? "Ônibus Convencional"
+             : idVeiculo == 4 ? "Ônibus Biarticulado" : idVeiculo == 5 ? "Ônibus Padron" : idVeiculo == 6 ? "Ônibus Trolébus" : "Desconhecido";
+
+            notificarSlack("ação", `Removeu ${nomeVeiculo} ao grupo ${nomeGrupo}.`);
 
             setTimeout(() => {
                 location.reload();
