@@ -19,5 +19,12 @@ router.post("/buscarVeiculoPorGrupo/:idGrupo", function (req, res) {
     linhaController.buscarVeiculoPorGrupo(req, res);
 });
 
+router.get("/listarPorMaisPassageiro/:idEmpresa", function (req, res) {
+    linhaController.listarPorMaisPassageiro(req, res);
+});
+
+router.get("/listarPorMenosPassageiro/:idEmpresa", function (req, res) {
+    linhaController.listarPorMenosPassageiro(req, res);
+});
 
 module.exports = router;
