@@ -204,7 +204,7 @@ function buscarLinha() {
                             <div class="div-opcao-header"><span>${linha.grupo}</span></div>
                             <div class="div-opcao-header"><span>${linha.soma}</span></div>
                             <div class="div-opcao-header"><span>Alta</span></div>
-                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha})"><i class="bi bi-eye-fill"></i></div>
+                            <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha}, ${linha.idGrupo})"><i class="bi bi-eye-fill"></i></div>
                         </div>
                     `;
                     }
