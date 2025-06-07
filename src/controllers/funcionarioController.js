@@ -81,13 +81,14 @@ function editar(req, res) {
 }
 
 function cadastrar(req, res) {
-  const idFuncionario = req.body.idFuncionario;
+  const idEmpresa = req.body.idEmpresa;
   const nome = req.body.nome;
   const email = req.body.email;
+  const senha = req.body.senha;
   const cargo = req.body.cargo;
 
   funcionarioModel
-    .editar(idFuncionario, nome, email, cargo)
+    .cadastrar(idEmpresa, nome, email, senha, cargo)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -107,5 +108,5 @@ module.exports = {
   listarFuncionario,
   buscarFuncionario,
   editar,
-  cadastrar
+  cadastrar,
 };

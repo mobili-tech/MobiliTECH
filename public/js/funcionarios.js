@@ -98,40 +98,40 @@ function modalAddFuncionario() {
                                 <div class="body-modal">
                                     <div class="div-sup-modal">
                                         <span><b>Nome:</b> </span>
-                                        <input type="text" id="editar_nome" class="ipt_edit" >
+                                        <input type="text" id="cadastrar_nome" class="ipt_edit" >
                                         <span><b>Email:</b> </span>
-                                        <input type="text" id="editar_email" class="ipt_edit">
+                                        <input type="text" id="cadastrar_email" class="ipt_edit">
+                                        <span><b>Senha:</b> </span>
+                                        <input type="text" id="cadastrar_senha" class="ipt_edit">
                                         <span><b>Cargo:</b> </span>
-                                        <input type="text" id="editar_cargo" class="ipt_edit">
+                                        <input type="text" id="cadastrar_cargo" class="ipt_edit">
                                     </div>
                                     
                                      <div class="div_btn_gravar">
-                                        <button id="btn_gravar_edit" class="btn_gravar" onclick="editarFuncionario(${idFuncionario})">Gravar</button>
+                                        <button id="btn_gravar_edit" class="btn_gravar" onclick="cadastrarFuncionario()">Gravar</button>
                                     </div>
                                 </div>
                             </div>
                         `;
-
-    editar_nome.value = funcionario.nome;
-    editar_email.value = funcionario.email;
-    editar_cargo.value = funcionario.cargo;
   }
 }
 
 function cadastrarFuncionario() {
-  const nome = document.getElementById("editar_nome");
-  const email = document.getElementById("editar_email");
-  const cargo = document.getElementById("editar_cargo");
+  const nome = document.getElementById("cadastrar_nome");
+  const email = document.getElementById("cadastrar_email");
+  const senha = document.getElementById("cadastrar_senha");
+  const cargo = document.getElementById("cadastrar_cargo");
 
-  fetch(`/funcionario/editar`, {
+  fetch(`/funcionario/cadastrar`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      idFuncionario: idFuncionario,
+      idEmpresa: sessionStorage.ID_EMPRESA,
       nome: nome.value,
       email: email.value,
+      senha: senha.value,
       cargo: cargo.value,
     }),
   })
