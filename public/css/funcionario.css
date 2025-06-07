@@ -1,0 +1,279 @@
+.div-area-kpi {
+  height: 25vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.div-kpi {
+  height: 75%;
+  width: 25%;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #00000020;
+  border: solid 1px #00000020;
+  background-color: #fff;
+}
+
+.div-conteudo-kpi {
+  height: 85%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.7rem;
+}
+
+.div-area-tabela {
+  height: 55vh;
+  width: 100%;
+}
+
+.div-tabela {
+  height: 90%;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #00000020;
+  border: solid 1px #00000020;
+  background-color: #fff;
+  overflow: auto;
+}
+
+.div-select-pagina {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.div-select-pagina #input_buscar {
+  border-radius: 5px;
+  height: 1.2rem;
+  border: solid 1px #00000050;
+}
+
+.header-tabela {
+  width: 100%;
+  height: 10%;
+  border-radius: 10px 0px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(103, 52, 152, 1) 0%,
+    rgba(69, 34, 101, 1) 50%,
+    rgba(34, 17, 50, 1) 100%
+  );
+}
+
+.header-tabela .div-opcao-header {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 1px #fffff020;
+}
+
+.div-opcao-header span {
+  cursor: pointer;
+}
+
+.header-tabela .ult {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-right: none;
+}
+
+.linha-tabela {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linha-tabela .div-opcao-header {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 1px #00000020;
+  border-top: solid 1px #00000020;
+}
+
+.linha-tabela .ult {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-right: none;
+}
+
+.fundo-modal {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: #00000050;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-modal {
+  background: #ffffff;
+  height: 75%;
+  width: 40%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  gap: 1rem;
+}
+
+.div-modal .header-modal {
+  height: 15%;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.div-modal .header-modal button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.div-modal .body-modal {
+  height: 70%;
+  width: 70%;
+  gap: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.body-modal .div-sup-modal {
+  height: 35%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.div-sup-modal span {
+  font-size: 1.2rem;
+}
+
+.body-modal .div-inf-modal {
+  height: 65%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.container_icons_header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ipt_edit {
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.div_btn_gravar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.btn_gravar {
+  cursor: pointer;
+  text-decoration: none;
+  background: rgb(254, 80, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(254, 80, 0, 1) 40%,
+    rgba(255, 131, 74, 1) 100%
+  );
+  width: 80%;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: #00000015 2px 3px 3px 0px;
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.btn_cadastrar_funcionario {
+  border: none;
+  background: none;
+}
+
+.footer-modal {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  width: 60%;
+}
+
+.btn-cancelar,
+.btn-remove {
+  padding: 0.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  width: 30%;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: #00000015 2px 3px 3px 0px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.btn-cancelar {
+  background: rgb(254, 80, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(254, 80, 0, 1) 40%,
+    rgba(255, 131, 74, 1) 100%
+  );
+}
+
+.btn-remove {
+  background: linear-gradient(
+    90deg,
+    rgba(103, 52, 152, 1) 0%,
+    rgba(69, 34, 101, 1) 50%,
+    rgba(34, 17, 50, 1) 100%
+  );
+}
