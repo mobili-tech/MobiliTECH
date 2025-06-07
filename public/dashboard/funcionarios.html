@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobiliTECH</title>
+    <link rel="stylesheet" href="../css/funcionario.css">
+    <link rel="stylesheet" href="../css/global.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- FONTE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="listarFuncionarios()">
+
+    <nav>
+
+        <div class="container-navegacao">
+
+            <h2>Mobilitech</h2>
+
+            <div class="container-funcionalidades">
+
+                <div class="div-funcionalidades">
+
+                    <a class="itens-nav" href="./dashboard.html">
+                        <i class="bi bi-columns-gap"></i>
+                        <p>DashBoards</p>
+                    </a>
+
+                    <a class="itens-nav" href="./linhas.html">
+                        <i class="bi bi-filter-left"></i>
+                        <p>Linhas</p>
+                    </a>
+
+                    <a class="itens-nav" href="./veiculos.html">
+                        <i class="bi bi-bus-front-fill"></i>
+                        <p>Veículos</p>
+                    </a>
+
+                    <a class="itens-nav selecionado" href="./funcionarios.html">
+                        <i class="bi bi-person-fill-gear"></i>
+                        <p>Funcionarios</p>
+                    </a>
+                </div>
+
+                <div class="div-acessos">
+
+                    <a class="itens-nav" href="./page-perfil.html">
+                        <i class="bi bi-person"></i>
+                        <p>Perfil</p>
+                    </a>
+
+                    <a class="itens-nav" href="../index.html">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <p>Sair</p>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </nav>
+
+    <div class="fundo-modal" id="modal">
+
+    </div>
+
+    <main>
+        <header class="header-main">
+            <h2>Funcionarios</h2>
+
+            <div class="container_icons_header">
+                <div class="div-notificações">
+                    <button class="btn_cadastrar_funcionario" onclick="modalAddFuncionario()">
+                        <i class="bi bi-plus" style="font-size: 1.2rem;"></i>
+                        <i class="bi bi-bell-fill icon-houver" style="font-size: 1.2rem; display: none;"></i>
+                    </button>
+                </div>
+                <div class="div-notificações">
+                    <i class="bi bi-bell" style="font-size: 1.2rem;"></i>
+                    <i class="bi bi-bell-fill icon-houver" style="font-size: 1.2rem; display: none;"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="div-area-tabela">
+
+            <div class="div-select-pagina">
+                <span><b>Buscar funcionario:</b></span>
+                <input type="text" id="input_buscar" oninput="buscarFuncionario()">
+            </div>
+
+            <div class="div-tabela" id="div_linhas">
+
+                <div class="header-tabela">
+
+                    <div class="div-opcao-header">
+                        <h3>ID</h3>
+                    </div>
+
+                    <div class="div-opcao-header">
+                        <h3>Nome</h3>
+                    </div>
+
+                    <div class="div-opcao-header">
+                        <h3>E-mail</h3>
+                    </div>
+
+                    <div class="div-opcao-header">
+                        <h3>Cargo</h3>
+                    </div>
+
+                    <div class="div-opcao-header ult"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
+
+<script src="../js/funcionarios.js"></script>
