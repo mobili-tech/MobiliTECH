@@ -27,4 +27,8 @@ router.post("/buscarVeiculoPorGrupo/:idGrupo", function (req, res) {
   funcionarioRouter.buscarVeiculoPorGrupo(req, res);
 });
 
+router.delete("/deletar", function (req, res) {
+    funcionarioRouter.deletar(req, res);
+});
+
 module.exports = router;

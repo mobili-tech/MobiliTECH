@@ -1,3 +1,4 @@
+const { listarFuncionario } = require("../../src/models/funcionarioModel");
 const { get } = require("../../src/routes/funcionario");
 
 function listarFuncionarios() {
@@ -14,8 +15,13 @@ function listarFuncionarios() {
                             <div class="div-opcao-header"><span>${funcionario.nome}</span></div>
                             <div class="div-opcao-header"><span>${funcionario.email}</span></div>
                             <div class="div-opcao-header"><span>${funcionario.cargo}</span></div>
-                            <div class="div-opcao-header ult" onclick="abrirModal(${funcionario.idFuncionario})"><span>
+                            <div class="div-opcao-header ult"><span
+                                            onclick="abrirModal(${funcionario.idFuncionario})">
                                             <i class="bi bi-pencil" style="font-size: 1rem;"></i>
+                                            </span>
+                                            <span
+                                            onclick="modalDelFuncionario(${funcionario.idFuncionario})">
+                                            <i class="bi bi-trash" style="font-size: 1rem;"></i>
                                             </span>
                             </div>
                         </div>
@@ -64,7 +70,7 @@ function abrirModal(idFuncionario) {
                                     </div>
                                     
                                      <div class="div_btn_gravar">
-                                        <button id="btn_gravar_edit" class="btn_gravar" onclick="editarFuncionario(${idFuncionario})">Gravar</button>
+                                        <button id="btn_gravar_edit" class="btn_gravar" onclick="editarFuncionario(${idFuncionario})">Editar</button>
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +223,15 @@ function buscarFuncionario() {
                             <div class="div-opcao-header"><span>${funcionario.nome}</span></div>
                             <div class="div-opcao-header"><span>${funcionario.email}</span></div>
                             <div class="div-opcao-header"><span>${funcionario.cargo}</span></div>
-                            <div class="div-opcao-header ult" onclick="abrirModal(${funcionario.idFuncionario})"><span>...</span></div>
+                            <div class="div-opcao-header ult"><span
+                                            onclick="abrirModal(${funcionario.idFuncionario})">
+                                            <i class="bi bi-pencil" style="font-size: 1rem;"></i>
+                                            </span>
+                                            <span
+                                            onclick="modalDelFuncionario(${funcionario.idFuncionario})">
+                                            <i class="bi bi-trash" style="font-size: 1rem;"></i>
+                                            </span>
+                            </div>
                         </div>
                     `;
             }
@@ -248,5 +262,60 @@ function buscarFuncionario() {
 
                 </div>`;
     listarFuncionarios();
+  }
+}
+
+function removerFuncionario(idFuncionario) {
+  fetch(`/funcionario/deletar`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idFuncionario: idFuncionario,
+    }),
+  })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        location.reload();
+      } else {
+        modalDelFuncionario();
+        listarFuncionario();
+        // alerta(`Houve um erro ao parar de seguir!`, 'erro');
+        throw "Houve um erro ao tentar remover!";
+      }
+    })
+    .catch(function (erro) {
+      // alerta(`${erro}: Houve um erro interno ao remover!`, 'erro');
+      console.log(`#ERRO: ${erro}`);
+    });
+
+  return false;
+}
+
+function modalDelFuncionario(idFuncionario) {
+  if (modal.style.display == "none" || modal.style.display == "") {
+    modal.style.display = "flex";
+
+    modal.innerHTML = `
+            <div class="div-modal" style="height: 20%; width: 40%; text-align: center;">
+                <div class="header-modal">
+                    <h2>Remover tipo de veículo</h2>
+
+                    <button onclick="fecharModal()">X</button>
+                </div>
+
+                <div class="body-modal">
+                    <div class="div-area-select" style="height: 100%; justify-content: center">
+                        <h3>Deseja <b>remover</b> Funcionario ?</h3>
+                    </div>
+                </div>
+
+                <div class="footer-modal">
+                    <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+                    <button class="btn-remove" onclick="removerFuncionario(${idFuncionario})">Remover</button>
+                </div>
+            </div>
+        `;
   }
 }

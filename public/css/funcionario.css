@@ -80,11 +80,15 @@
   border-right: solid 1px #fffff020;
 }
 
+.div-opcao-header span {
+  cursor: pointer;
+}
+
 .header-tabela .ult {
   width: 10%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border-right: none;
 }
@@ -98,7 +102,7 @@
 }
 
 .linha-tabela .div-opcao-header {
-  width: 20%;
+  width: 80%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -108,13 +112,12 @@
 }
 
 .linha-tabela .ult {
-  width: 10%;
+  width: 40%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border-right: none;
-  cursor: pointer;
 }
 
 .fundo-modal {
@@ -130,7 +133,7 @@
 
 .div-modal {
   background: #ffffff;
-  height: 65%;
+  height: 75%;
   width: 40%;
   border-radius: 10px;
   display: flex;
@@ -228,4 +231,49 @@
   color: #ffffff;
   font-size: 1.3rem;
   font-weight: bold;
+}
+
+.btn_cadastrar_funcionario {
+  border: none;
+  background: none;
+}
+
+.footer-modal {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  width: 60%;
+}
+
+.btn-cancelar,
+.btn-remove {
+  padding: 0.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  width: 30%;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: #00000015 2px 3px 3px 0px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.btn-cancelar {
+  background: rgb(254, 80, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(254, 80, 0, 1) 40%,
+    rgba(255, 131, 74, 1) 100%
+  );
+}
+
+.btn-remove {
+  background: linear-gradient(
+    90deg,
+    rgba(103, 52, 152, 1) 0%,
+    rgba(69, 34, 101, 1) 50%,
+    rgba(34, 17, 50, 1) 100%
+  );
 }
