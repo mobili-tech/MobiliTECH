@@ -3,7 +3,8 @@ var database = require("../database/config")
 function listarPorEmpresa(idEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorEmpresa()");
     var instrucaoSql = `
-        SELECT l.idLinha,
+        SELECT 
+            l.idLinha,
             l.nome AS linha,
             l.qtdViagensIda,
             l.qtdViagensVolta,
@@ -11,14 +12,17 @@ function listarPorEmpresa(idEmpresa) {
             g.tipo AS grupo,
             e.idEmpresa,
             e.razaoSocial AS empresa,
-            SUM(r.qtdPassageiros) as soma
+            SUM(r.qtdPassageiros) AS soma,
+            ROUND(((SUM(r.qtdPassageiros) * 1.0) / ((l.qtdViagensIda + l.qtdViagensVolta) * AVG(v.capacidade))) * 100, 1) AS porcentagem_ocupacao
         FROM linha AS l
         LEFT JOIN grupo AS g ON g.idGrupo = l.fkGrupo
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
+        LEFT JOIN veiculoEmpresa AS ve ON ve.fkEmpresa = l.fkEmpresa AND ve.fkGrupo = l.fkGrupo
+        LEFT JOIN veiculo AS v ON v.idVeiculo = ve.fkVeiculo
         WHERE e.idEmpresa = ${idEmpresa}
         GROUP BY l.idLinha
-        ORDER BY g.idGrupo;
+        ORDER BY g.idGrupo, l.idLinha;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -43,7 +47,8 @@ function listarPorLinha(idLinha) {
 function buscarLinha(linha, idEmpresa) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarLinha()");
     var instrucaoSql = `
-        SELECT l.idLinha,
+        SELECT 
+            l.idLinha,
             l.nome AS linha,
             l.qtdViagensIda,
             l.qtdViagensVolta,
@@ -51,14 +56,17 @@ function buscarLinha(linha, idEmpresa) {
             g.tipo AS grupo,
             e.idEmpresa,
             e.razaoSocial AS empresa,
-            SUM(r.qtdPassageiros) as soma
+            SUM(r.qtdPassageiros) AS soma,
+            ROUND(((SUM(r.qtdPassageiros) * 1.0) / ((l.qtdViagensIda + l.qtdViagensVolta) * AVG(v.capacidade))) * 100, 1) AS porcentagem_ocupacao
         FROM linha AS l
         LEFT JOIN grupo AS g ON g.idGrupo = l.fkGrupo
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
+        LEFT JOIN veiculoEmpresa AS ve ON ve.fkEmpresa = l.fkEmpresa AND ve.fkGrupo = l.fkGrupo
+        LEFT JOIN veiculo AS v ON v.idVeiculo = ve.fkVeiculo
         WHERE e.idEmpresa = ${idEmpresa} AND (l.nome LIKE '%${linha}%' OR l.num LIKE '%${linha}%')
         GROUP BY l.idLinha
-        ORDER BY g.idGrupo;
+        ORDER BY g.idGrupo, l.idLinha;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -109,6 +117,8 @@ function buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim)
         WHERE e.idEmpresa = ${idEmpresa}
         AND g.idGrupo = ${idGrupo}
         AND l.idLinha = ${idLinha}
+        AND MONTH(dtRegistro) = MONTH(CURDATE())
+        AND YEAR(dtRegistro) = YEAR(CURDATE())
         GROUP BY l.idLinha, v.idVeiculo, e.idEmpresa;
     `;
     }
@@ -133,6 +143,7 @@ function listarPorMaisPassageiro(idEmpresa) {
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
         WHERE e.idEmpresa = ${idEmpresa}
+        AND r.qtdPassageiros > 0
         GROUP BY l.idLinha
         ORDER BY soma DESC;
     `;
@@ -157,6 +168,7 @@ function listarPorMenosPassageiro(idEmpresa) {
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
         WHERE e.idEmpresa = ${idEmpresa}
+        AND r.qtdPassageiros > 0
         GROUP BY l.idLinha
         ORDER BY soma;
     `;

@@ -25,9 +25,16 @@ function validarTipoUsuario(pagina) {
             pencil3.style.display = "none";
         }
 
+        side_fun.style.display = "none";
+        side_das.style.display = "none";
+    } else if (cargo == "Gerente Operacional") {
         if (pagina == "linha") {
-            div_area_kpi.style.display = "none";
+            div_kpis.style.display = "none";
             div_area_tabela.style.height = "75vh";
         }
+
+        side_fun.style.display = "none";
+    } else {
+
     }
 }

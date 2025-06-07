@@ -7,9 +7,9 @@ function listarLinhas() {
 
                     var nivelOcupacao;
 
-                    if (linha.porcentagem <= 30) {
+                    if (linha.porcentagem_ocupacao <= 30) {
                         nivelOcupacao = 'Baixa';
-                    } else if (linha.porcentagem < 90) {
+                    } else if (linha.porcentagem_ocupacao < 90) {
                         nivelOcupacao = 'Ideal';
                     } else {
                         nivelOcupacao = 'Alta';
@@ -21,7 +21,7 @@ function listarLinhas() {
                             <div class="div-opcao-header"><span>${linha.empresa}</span></div>
                             <div class="div-opcao-header"><span>${linha.grupo}</span></div>
                             <div class="div-opcao-header"><span>${linha.soma}</span></div>
-                            <div class="div-opcao-header"><span>Alta</span></div>
+                            <div class="div-opcao-header"><span>${nivelOcupacao}</span></div>
                             <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha}, ${linha.idGrupo})"><i class="bi bi-eye-fill"></i></div>
                         </div>
                     `;
@@ -101,7 +101,7 @@ function abrirModal(idLinha, idGrupo) {
 
 function buscarVeiculo(idLinha, idGrupo, dataInicio, dataFim) {
     div_veiculo.innerHTML = ``;
-    
+
     fetch(`/linhas/buscarVeiculoPorGrupo/${idGrupo}`, {
         method: "POST",
         headers: {
@@ -123,9 +123,9 @@ function buscarVeiculo(idLinha, idGrupo, dataInicio, dataFim) {
                         const veiculo = resposta[i];
 
                         var simbolo;
-                        if (veiculo.porcentagem <= 30) {
+                        if (veiculo.porcentagem_ocupacao <= 30) {
                             simbolo = '<i class="bi bi-caret-down-fill" style="color: blue"></i>';
-                        } else if (veiculo.porcentagem < 90) {
+                        } else if (veiculo.porcentagem_ocupacao < 90) {
                             simbolo = '<i class="bi bi-dash" style="color: green"></i>';
                         } else {
                             simbolo = '<i class="bi bi-caret-up-fill" style="color: red"></i>';
@@ -197,13 +197,23 @@ function buscarLinha() {
                     for (let i = 0; i < resposta.length; i++) {
                         const linha = resposta[i];
 
+                        var nivelOcupacao;
+
+                        if (linha.porcentagem_ocupacao <= 40) {
+                            nivelOcupacao = 'Baixa';
+                        } else if (linha.porcentagem_ocupacao < 90) {
+                            nivelOcupacao = 'Ideal';
+                        } else {
+                            nivelOcupacao = 'Alta';
+                        }
+
                         div_linhas.innerHTML += `
                         <div class="linha-tabela">
                             <div class="div-opcao-header"><span>${linha.linha}</span></div>
                             <div class="div-opcao-header"><span>${linha.empresa}</span></div>
                             <div class="div-opcao-header"><span>${linha.grupo}</span></div>
                             <div class="div-opcao-header"><span>${linha.soma}</span></div>
-                            <div class="div-opcao-header"><span>Alta</span></div>
+                            <div class="div-opcao-header"><span>${nivelOcupacao}</span></div>
                             <div class="div-opcao-header ult" onclick="abrirModal(${linha.idLinha}, ${linha.idGrupo})"><i class="bi bi-eye-fill"></i></div>
                         </div>
                     `;
