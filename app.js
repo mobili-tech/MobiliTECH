@@ -22,6 +22,7 @@ var medidasRouter = require("./src/routes/medidas");
 var empresasRouter = require("./src/routes/empresas");
 var veiculosRouter = require("./src/routes/veiculos");
 var linhasRouter = require("./src/routes/linhas");
+var dashboardsRouter = require("./src/routes/dashboards");
 var funcionarioRouter = require("./src/routes/funcionario");
 
 app.use(express.json());
@@ -37,6 +38,7 @@ app.use("/medidas", medidasRouter);
 app.use("/empresas", empresasRouter);
 app.use("/veiculos", veiculosRouter);
 app.use("/linhas", linhasRouter);
+app.use("/dashboards", dashboardsRouter);
 app.use("/funcionario", funcionarioRouter);
 
 app.listen(PORTA_APP, function () {

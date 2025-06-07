@@ -54,7 +54,6 @@ function autenticar(req, res) {
     }
 }
 
-
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -92,7 +91,64 @@ function cadastrar(req, res) {
     }
 }
 
+function buscarEmpresaPorIdentificador(req, res) {
+    var identificador = req.params.identificador;
+
+    usuarioModel.buscarEmpresaPorIdentificador(identificador)
+        .then(
+            function (resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!");
+                }
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "Houve um erro ao buscar empresa: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function cadastrarEmpresa(req, res) {
+    var idEmpresa = req.body.idEmpresaServer;
+    var razaoSocial = req.body.razaoSocialServer;
+    var cnpj = req.body.cnpjServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else {
+        usuarioModel.cadastrarEmpresa(idEmpresa, razaoSocial, cnpj, email, senha)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
-    autenticar,  
-    cadastrar
+    autenticar,
+    cadastrar,
+    buscarEmpresaPorIdentificador,
+    cadastrarEmpresa
 }

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil</title>
+  <title>MobiliTech</title>
   <link rel="stylesheet" href="../css/dashboards.css">
   <link rel="stylesheet" href="../css/global.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,8 +18,11 @@
     rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), validarTipoUsuario('dashboard')">
+<body
+  onload="validarSessao(), validarTipoUsuario('dashboard'), handle()">
+  <div id="div_alerta">
 
+  </div>
   <nav>
 
     <div class="container-navegacao">
@@ -90,44 +93,7 @@
 
     <div class="div-container-conteudo">
 
-      <div class="div-container-kpi">
-        <!-- ESSES DADOS SERÃO REFERENTES AO DIA ANTERIOR -->
-        <div class="card-kpi">
-
-          <div class="div-titulo-kpi">
-            <span class="titulo-kpi">Linhas Regulares</span>
-          </div>
-
-          <div class="div-dados-kpi">
-            <span class="dados-kpi"><span>62</span> / 130</span>
-          </div>
-
-        </div>
-
-        <div class="card-kpi">
-
-          <div class="div-titulo-kpi">
-            <span class="titulo-kpi">Linhas Subutilizadas</span>
-          </div>
-
-          <div class="div-dados-kpi">
-            <span class="dados-kpi"><span>38</span> / 130</span>
-          </div>
-
-        </div>
-
-        <div class="card-kpi">
-
-          <div class="div-titulo-kpi">
-            <span class="titulo-kpi">Linhas Superlotadas</span>
-          </div>
-
-          <div class="div-dados-kpi">
-            <span class="dados-kpi"><span>30</span> / 130</span>
-          </div>
-
-        </div>
-
+      <div class="div-container-kpi" id="div_kpis">
       </div>
 
       <div class="div-container-dash">
@@ -153,10 +119,37 @@
         <div class="dash-right">
 
           <div class="card-dash-right">
-            <!-- GRÁFICO DE PIZZA - PERCENTUAL MENSAL DE OCUPAÇÃO DAS LINHAS -->
-            <span>Percentual de Ocupação Mensal das Linhas</span>
-            <canvas id="dash-ocupacao-linhas"></canvas>
+            <span>Linhas mais utilizadas</span>
 
+            <div class="div-area-tabela" id="div_area_tabela">
+              <div class="div-tabela" id="div_linhas_alto">
+                <div class="header-tabela">
+                  <div class="div-opcao-header">
+                    <h3>Linha</h3>
+                  </div>
+                  <div class="div-opcao-header">
+                    <h3>Passageiros</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-dash-right">
+            <span>Linhas menos utilizadas</span>
+
+            <div class="div-area-tabela" id="div_area_tabela">
+              <div class="div-tabela" id="div_linhas_baixo">
+                <div class="header-tabela">
+                  <div class="div-opcao-header">
+                    <h3>Linha</h3>
+                  </div>
+                  <div class="div-opcao-header">
+                    <h3>Passageiros</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -171,111 +164,5 @@
 
 </html>
 
-<script>
-
-  const ctx = document.getElementById('dash-status-mensal');
-
-  let labelX = ['Janeiro', 'Fevereriro', 'Março', 'Abril', 'Maio', 'Junho'];
-
-  let qtdPasseigos = [29800, 28500, 27800, 30800, 29800, 49800];
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labelX,
-      datasets: [{
-        label: 'Total',
-        data: qtdPasseigos,
-        backgroundColor: 'orange'
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-
-  const ctz = document.getElementById('dash-ocupacao-linhas');
-
-  const data = {
-    labels: [
-      'Ideal',
-      'Acima',
-      'Abaixo'
-    ],
-    datasets: [{
-      label: '',
-      data: [30, 40, 100],
-      backgroundColor: [
-        '#6B9834',
-        '#FF0000',
-        '#343C98'
-      ],
-      hoverOffset: 4
-    }]
-  };
-
-  new Chart(ctz, {
-    type: 'pie',
-    data: data,
-  });
-
-  const cty = document.getElementById('dash-status-semanal').getContext('2d');
-
-  const ocupacaoDistribuicaoChart = new Chart(cty, {
-    type: 'bar',
-    data: {
-      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-      datasets: [
-        {
-          label: 'Superlotadas',
-          data: [40, 35, 38, 30, 42, 39],
-          backgroundColor: 'red'
-        },
-        {
-          label: 'Regulares',
-          data: [30, 40, 35, 45, 33, 36],
-          backgroundColor: 'green'
-        },
-        {
-          label: 'Subutilizadas',
-          data: [30, 25, 27, 25, 25, 25],
-          backgroundColor: 'blue'
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        tooltip: {
-          mode: 'index',
-          intersect: false
-        }
-      },
-      scales: {
-        x: {
-          stacked: true,
-          title: {
-            display: true,
-            text: 'Meses'
-          }
-        },
-        y: {
-          stacked: true,
-          beginAtZero: true,
-          max: 100,
-          title: {
-            display: true,
-            text: 'Percentual (%)'
-          }
-        }
-      }
-    }
-  });
-
-</script>
-
 <script src="../js/sessao.js"></script>
+<script src="../js/dashboard.js"></script>

@@ -5,20 +5,20 @@ function listarPorEmpresa(idEmpresa) {
     var instrucaoSql = `
         SELECT l.idLinha,
             l.nome AS linha,
-            l.num AS numLinha,
             l.qtdViagensIda,
             l.qtdViagensVolta,
             g.idGrupo,
             g.tipo AS grupo,
             e.idEmpresa,
-            e.nomeFantasia AS empresa,
+            e.razaoSocial AS empresa,
             SUM(r.qtdPassageiros) as soma
         FROM linha AS l
         LEFT JOIN grupo AS g ON g.idGrupo = l.fkGrupo
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
         WHERE e.idEmpresa = ${idEmpresa}
-        GROUP BY l.idLinha;
+        GROUP BY l.idLinha
+        ORDER BY g.idGrupo;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -29,7 +29,6 @@ function listarPorLinha(idLinha) {
     var instrucaoSql = `
         SELECT l.idLinha,
 		l.nome AS linha,
-		l.num AS numLinha,
         (l.qtdViagensIda + l.qtdViagensVolta) AS qtdViagens,
 		g.idGrupo,
         g.tipo AS grupo
@@ -46,20 +45,20 @@ function buscarLinha(linha, idEmpresa) {
     var instrucaoSql = `
         SELECT l.idLinha,
             l.nome AS linha,
-            l.num AS numLinha,
             l.qtdViagensIda,
             l.qtdViagensVolta,
             g.idGrupo,
             g.tipo AS grupo,
             e.idEmpresa,
-            e.nomeFantasia AS empresa,
+            e.razaoSocial AS empresa,
             SUM(r.qtdPassageiros) as soma
         FROM linha AS l
         LEFT JOIN grupo AS g ON g.idGrupo = l.fkGrupo
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
         WHERE e.idEmpresa = ${idEmpresa} AND (l.nome LIKE '%${linha}%' OR l.num LIKE '%${linha}%')
-        GROUP BY l.idLinha;
+        GROUP BY l.idLinha
+        ORDER BY g.idGrupo;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -117,9 +116,59 @@ function buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim)
     return database.executar(instrucaoSql);
 }
 
+function listarPorMaisPassageiro(idEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorMaisPassageiro()");
+    var instrucaoSql = `
+        SELECT l.idLinha,
+            l.nome AS linha,
+            l.qtdViagensIda,
+            l.qtdViagensVolta,
+            g.idGrupo,
+            g.tipo AS grupo,
+            e.idEmpresa,
+            e.razaoSocial AS empresa,
+            SUM(r.qtdPassageiros) as soma
+        FROM linha AS l
+        LEFT JOIN grupo AS g ON g.idGrupo = l.fkGrupo
+        LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
+        LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
+        WHERE e.idEmpresa = ${idEmpresa}
+        GROUP BY l.idLinha
+        ORDER BY soma DESC;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarPorMenosPassageiro(idEmpresa) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorMenosPassageiro()");
+    var instrucaoSql = `
+        SELECT l.idLinha,
+            l.nome AS linha,
+            l.qtdViagensIda,
+            l.qtdViagensVolta,
+            g.idGrupo,
+            g.tipo AS grupo,
+            e.idEmpresa,
+            e.razaoSocial AS empresa,
+            SUM(r.qtdPassageiros) as soma
+        FROM linha AS l
+        LEFT JOIN grupo AS g ON g.idGrupo = l.fkGrupo
+        LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
+        LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
+        WHERE e.idEmpresa = ${idEmpresa}
+        GROUP BY l.idLinha
+        ORDER BY soma;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listarPorEmpresa,
     listarPorLinha,
     buscarLinha,
-    buscarVeiculoPorGrupo
+    buscarVeiculoPorGrupo,
+    listarPorMaisPassageiro,
+    listarPorMenosPassageiro
 };

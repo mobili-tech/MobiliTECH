@@ -49,7 +49,34 @@ function cadastrar(nome, email, senha, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function buscarEmpresaPorIdentificador(identificador) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarEmpresaPorIdentificador()");
+    var instrucaoSql = `
+        SELECT *
+        FROM empresa
+        WHERE codVerificacao = '${identificador}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function cadastrarEmpresa(idEmpresa, razaoSocial, cnpj, email, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpresa():", razaoSocial, email, senha);
+    var instrucaoSql = `
+        UPDATE empresa
+        SET razaoSocial = '${razaoSocial}',
+            cnpj = '${cnpj}',
+            email = '${email}',
+            senha = '${senha}'
+        WHERE codVerificacao = '${idEmpresa}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    buscarEmpresaPorIdentificador,
+    cadastrarEmpresa
 };
