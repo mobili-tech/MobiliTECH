@@ -85,10 +85,8 @@ function cadastrarEmpresa() {
         }),
     }).then(function (resposta) {
         if (resposta.ok) {
-            alerta('Empresa cadastrada com sucesso', 'sucesso');
-
             setTimeout(() => {
-                location.reload();
+                window.location.href = "./login.html";
             }, 1000);
         } else {
             alerta('Houve um erro ao cadastrar empresa', 'erro');
