@@ -1,5 +1,67 @@
+let mesPesquisa = input_mes.value;
+
+function mes() {
+    mesPesquisa = input_mes.value;
+    listarLinhas();
+    listarKpis();
+}
+
+function listarKpis() {
+    fetch(`/dashboards/listarKpiGerente/${sessionStorage.ID_EMPRESA}?mes=${input_mes.value}`).then(function (resposta) {
+        if (resposta.ok) {
+            if (resposta.status == 204) {
+                // var feed = document.getElementById("feed_teste");
+                // var mensagem = document.createElement("span");
+                // mensagem.innerHTML = "Nenhum resultado encontrado."
+                // feed.appendChild(mensagem);
+                throw "Nenhum resultado encontrado!!";
+            } else {
+                resposta.json().then(function (resposta) {
+                    var dadosKpi = resposta[0];
+
+                    div_kpis.innerHTML = `
+                        <div class="card-kpi">
+                            <div class="div-titulo-kpi">
+                                <span class="titulo-kpi">Linhas Regulares</span>
+                            </div>
+
+                            <div class="div-dados-kpi">
+                                <span class="dados-kpi"><span style="color: green">${dadosKpi.linhas_regulares}</span> / ${dadosKpi.total_linhas}</span>
+                            </div>
+                        </div>
+
+                        <div class="card-kpi">
+                            <div class="div-titulo-kpi">
+                                <span class="titulo-kpi">Linhas Subutilizadas</span>
+                            </div>
+
+                            <div class="div-dados-kpi">
+                                <span class="dados-kpi"><span style="color: blue">${dadosKpi.linhas_subutilizadas}</span> / ${dadosKpi.total_linhas}</span>
+                            </div>
+                        </div>
+
+                        <div class="card-kpi">
+                            <div class="div-titulo-kpi">
+                                <span class="titulo-kpi">Linhas Superlotadas</span>
+                            </div>
+
+                            <div class="div-dados-kpi">
+                                <span class="dados-kpi"><span style="color: red">${dadosKpi.linhas_superlotadas}</span> / ${dadosKpi.total_linhas}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
+    });
+}
+
 function listarLinhas() {
-    fetch(`/linhas/listarPorEmpresa/${sessionStorage.ID_EMPRESA}`).then(function (resposta) {
+    fetch(`/linhas/listarPorEmpresa/${sessionStorage.ID_EMPRESA}?mes=${mesPesquisa}`).then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then(function (resposta) {
                 for (let i = 0; i < resposta.length; i++) {
@@ -35,7 +97,7 @@ function listarLinhas() {
     });
 }
 
-function handle(idLinha, idGrupo) {
+function handleLinha(idLinha, idGrupo) {
     abrirModal(idLinha, idGrupo);
 }
 
@@ -70,7 +132,7 @@ function abrirModal(idLinha, idGrupo) {
                                             <input type="date" name="input_dataInicio" id="input_dataInicio" class="input-data">
                                             <label for="input_dataFim"><b>Data Fim: </b></label>
                                             <input type="date" name="input_dataFim" id="input_dataFim" class="input-data">
-                                            <button onclick="handle(${idLinha}, ${idGrupo})" class="btn-data"><i class="bi bi-search"></i></button>
+                                            <button onclick="handleLinha(${idLinha}, ${idGrupo})" class="btn-data"><i class="bi bi-search"></i></button>
                                         </div>
                                     </div>
 
@@ -102,7 +164,7 @@ function abrirModal(idLinha, idGrupo) {
 function buscarVeiculo(idLinha, idGrupo, dataInicio, dataFim) {
     div_veiculo.innerHTML = ``;
 
-    fetch(`/linhas/buscarVeiculoPorGrupo/${idGrupo}`, {
+    fetch(`/linhas/buscarVeiculoPorGrupo/${idGrupo}?mes=${mesPesquisa}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -123,7 +185,7 @@ function buscarVeiculo(idLinha, idGrupo, dataInicio, dataFim) {
                         const veiculo = resposta[i];
 
                         var simbolo;
-                        if (veiculo.porcentagem_ocupacao <= 30) {
+                        if (veiculo.porcentagem_ocupacao <= 40) {
                             simbolo = '<i class="bi bi-caret-down-fill" style="color: blue"></i>';
                         } else if (veiculo.porcentagem_ocupacao < 90) {
                             simbolo = '<i class="bi bi-dash" style="color: green"></i>';
@@ -145,7 +207,7 @@ function buscarVeiculo(idLinha, idGrupo, dataInicio, dataFim) {
                                 <div class="area-porcent">
                                     <span style="font-size: 1rem;">${veiculo.capacidade} (Capacidade total)</span>
                                     <span style="font-size: 1rem;">${veiculo.passageiros} (Passageiros totais)</span>
-                                    <p>${veiculo.porcentagem}%${simbolo}</p>
+                                    <p>${veiculo.porcentagem_ocupacao}%${simbolo}</p>
                                 </div>
                             </div>
                         `;
@@ -163,7 +225,7 @@ function buscarLinha() {
     linha = input_buscar.value;
 
     if (linha.length >= 3) {
-        fetch(`/linhas/buscarLinha/${linha}`, {
+        fetch(`/linhas/buscarLinha/${linha}?mes=${mesPesquisa}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -201,10 +263,10 @@ function buscarLinha() {
 
                         if (linha.porcentagem_ocupacao <= 40) {
                             nivelOcupacao = 'Baixa';
-                        } else if (linha.porcentagem_ocupacao < 90) {
-                            nivelOcupacao = 'Ideal';
-                        } else {
+                        } else if (linha.porcentagem_ocupacao > 100) {
                             nivelOcupacao = 'Alta';
+                        } else {
+                            nivelOcupacao = 'Ideal';
                         }
 
                         div_linhas.innerHTML += `
