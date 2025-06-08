@@ -52,8 +52,8 @@ function listarQtdPassageiros(req, res) {
 
 function listarKpiGerente(req, res) {
     var idEmpresa = req.params.idEmpresa;
-
-    dashboardModel.listarKpiGerente(idEmpresa)
+    var mes = req.query.mes;
+    dashboardModel.listarKpiGerente(idEmpresa, mes)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {

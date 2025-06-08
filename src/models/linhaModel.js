@@ -1,9 +1,10 @@
 var database = require("../database/config")
 
-function listarPorEmpresa(idEmpresa) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorEmpresa()");
+function listarPorEmpresa(idEmpresa, mes) {
+    // console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorEmpresa()");
     var instrucaoSql = `
-        SELECT l.idLinha,
+        SELECT 
+            l.idLinha,
             l.nome AS linha,
             l.qtdViagensIda,
             l.qtdViagensVolta,
@@ -11,21 +12,37 @@ function listarPorEmpresa(idEmpresa) {
             g.tipo AS grupo,
             e.idEmpresa,
             e.razaoSocial AS empresa,
-            SUM(r.qtdPassageiros) as soma
+            SUM(r.qtdPassageiros) AS soma,
+            ROUND((
+                (SUM(r.qtdPassageiros) * 1.0) / 
+                ((l.qtdViagensIda + l.qtdViagensVolta) * AVG(v.capacidade) * COUNT(DISTINCT r.dtRegistro))
+            ) * 100, 1) AS porcentagem_ocupacao
         FROM linha AS l
         LEFT JOIN grupo AS g ON g.idGrupo = l.fkGrupo
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
+        LEFT JOIN veiculoEmpresa AS ve ON ve.fkEmpresa = l.fkEmpresa AND ve.fkGrupo = l.fkGrupo
+        LEFT JOIN veiculo AS v ON v.idVeiculo = ve.fkVeiculo
         WHERE e.idEmpresa = ${idEmpresa}
-        GROUP BY l.idLinha
-        ORDER BY g.idGrupo;
+        AND r.dtRegistro LIKE '${mes}-%'
+        GROUP BY 
+            l.idLinha, 
+            l.nome, 
+            l.qtdViagensIda, 
+            l.qtdViagensVolta, 
+            g.idGrupo, 
+            g.tipo, 
+            e.idEmpresa, 
+            e.razaoSocial
+        HAVING SUM((l.qtdViagensIda + l.qtdViagensVolta)) > 0
+        ORDER BY g.idGrupo, l.idLinha;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    // // console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function listarPorLinha(idLinha) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorEmpresa()");
+    // console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorEmpresa()");
     var instrucaoSql = `
         SELECT l.idLinha,
 		l.nome AS linha,
@@ -36,14 +53,15 @@ function listarPorLinha(idLinha) {
         JOIN grupo AS g ON g.idGrupo = l.fkGrupo
         WHERE l.idLinha = ${idLinha};
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    // // console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function buscarLinha(linha, idEmpresa) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarLinha()");
+function buscarLinha(linha, idEmpresa, mes) {
+    // console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarLinha()");
     var instrucaoSql = `
-        SELECT l.idLinha,
+        SELECT 
+            l.idLinha,
             l.nome AS linha,
             l.qtdViagensIda,
             l.qtdViagensVolta,
@@ -51,21 +69,38 @@ function buscarLinha(linha, idEmpresa) {
             g.tipo AS grupo,
             e.idEmpresa,
             e.razaoSocial AS empresa,
-            SUM(r.qtdPassageiros) as soma
+            SUM(r.qtdPassageiros) AS soma,
+            ROUND((
+                (SUM(r.qtdPassageiros) * 1.0) / 
+                ((l.qtdViagensIda + l.qtdViagensVolta) * AVG(v.capacidade) * COUNT(DISTINCT r.dtRegistro))
+            ) * 100, 1) AS porcentagem_ocupacao
         FROM linha AS l
         LEFT JOIN grupo AS g ON g.idGrupo = l.fkGrupo
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
-        WHERE e.idEmpresa = ${idEmpresa} AND (l.nome LIKE '%${linha}%' OR l.num LIKE '%${linha}%')
-        GROUP BY l.idLinha
-        ORDER BY g.idGrupo;
+        LEFT JOIN veiculoEmpresa AS ve ON ve.fkEmpresa = l.fkEmpresa AND ve.fkGrupo = l.fkGrupo
+        LEFT JOIN veiculo AS v ON v.idVeiculo = ve.fkVeiculo
+        WHERE e.idEmpresa = ${idEmpresa}
+        AND r.dtRegistro LIKE '${mes}-%'
+        AND (l.nome LIKE '%${linha}%' OR l.num LIKE '%${linha}%')
+        AND (l.qtdViagensIda + l.qtdViagensVolta) > 0
+        GROUP BY 
+            l.idLinha,
+            l.nome,
+            l.qtdViagensIda,
+            l.qtdViagensVolta,
+            g.idGrupo,
+            g.tipo,
+            e.idEmpresa,
+            e.razaoSocial
+        ORDER BY g.idGrupo, l.idLinha;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    // // console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarVeiculoPorLinha()");
+function buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim, mes) {
+    // console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarVeiculoPorLinha()");
     if (dataInicio != "" || dataFim != "") {
         var instrucaoSql = `
         SELECT
@@ -73,10 +108,13 @@ function buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim)
             g.tipo AS grupo,
             ve.fkVeiculo,
             v.tipo AS veiculo,
-            SUM(v.capacidade) AS capacidade,
+            ROUND(((l.qtdViagensIda + l.qtdViagensVolta) * v.capacidade * COUNT(DISTINCT r.dtRegistro))) AS capacidade,
             ve.fkEmpresa,
-		    ROUND(((SUM(r.qtdPassageiros) * 1.0) / ((l.qtdViagensIda + l.qtdViagensVolta) * v.capacidade)) * 100, 1) AS porcentagem,
-            SUM(r.qtdPassageiros) as passageiros
+            ROUND((
+                (SUM(r.qtdPassageiros) * 1.0) /
+                ((l.qtdViagensIda + l.qtdViagensVolta) * v.capacidade * COUNT(DISTINCT r.dtRegistro))
+            ) * 100, 1) AS porcentagem_ocupacao,
+            SUM(r.qtdPassageiros) AS passageiros
         FROM veiculoEmpresa AS ve
         JOIN grupo AS g ON g.idGrupo = ve.fkGrupo
         JOIN veiculo AS v ON v.idVeiculo = ve.fkVeiculo
@@ -86,7 +124,7 @@ function buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim)
         WHERE e.idEmpresa = ${idEmpresa}
         AND g.idGrupo = ${idGrupo}
         AND l.idLinha = ${idLinha}
-        AND dtRegistro >= '${dataInicio}' && dtRegistro <= '${dataFim}'
+        AND r.dtRegistro >= '${dataInicio}' AND r.dtRegistro <= '${dataFim}'
         GROUP BY l.idLinha, v.idVeiculo, e.idEmpresa;
     `;
     } else {
@@ -96,9 +134,10 @@ function buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim)
             g.tipo AS grupo,
             ve.fkVeiculo,
             v.tipo AS veiculo,
-            SUM(v.capacidade) AS capacidade,
+            ROUND(((l.qtdViagensIda + l.qtdViagensVolta) * v.capacidade * COUNT(DISTINCT r.dtRegistro))) AS capacidade,
             ve.fkEmpresa,
-		    ROUND(((SUM(r.qtdPassageiros) * 1.0) / ((l.qtdViagensIda + l.qtdViagensVolta) * v.capacidade)) * 100, 1) AS porcentagem,
+            ROUND(((SUM(r.qtdPassageiros) * 1.0) /
+                ((l.qtdViagensIda + l.qtdViagensVolta) * v.capacidade * COUNT(DISTINCT r.dtRegistro))) * 100, 1) AS porcentagem_ocupacao,
             SUM(r.qtdPassageiros) as passageiros
         FROM veiculoEmpresa AS ve
         JOIN grupo AS g ON g.idGrupo = ve.fkGrupo
@@ -107,17 +146,18 @@ function buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim)
         JOIN linha AS l ON l.fkEmpresa = ve.fkEmpresa
         JOIN registro AS r ON r.fkLinha = l.idLinha
         WHERE e.idEmpresa = ${idEmpresa}
-        AND g.idGrupo = ${idGrupo}
-        AND l.idLinha = ${idLinha}
+                AND g.idGrupo = ${idGrupo}
+                AND l.idLinha = ${idLinha}
+                AND r.dtRegistro LIKE '${mes}-%'
         GROUP BY l.idLinha, v.idVeiculo, e.idEmpresa;
     `;
     }
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    // // console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function listarPorMaisPassageiro(idEmpresa) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorMaisPassageiro()");
+function listarPorMaisPassageiro(idEmpresa, mes) {
+    // console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorMaisPassageiro()");
     var instrucaoSql = `
         SELECT l.idLinha,
             l.nome AS linha,
@@ -133,15 +173,17 @@ function listarPorMaisPassageiro(idEmpresa) {
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
         WHERE e.idEmpresa = ${idEmpresa}
+        AND r.qtdPassageiros > 0
+        AND r.dtRegistro LIKE '${mes}-%'
         GROUP BY l.idLinha
         ORDER BY soma DESC;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    // // console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function listarPorMenosPassageiro(idEmpresa) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorMenosPassageiro()");
+function listarPorMenosPassageiro(idEmpresa, mes) {
+    // console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorMenosPassageiro()");
     var instrucaoSql = `
         SELECT l.idLinha,
             l.nome AS linha,
@@ -157,10 +199,12 @@ function listarPorMenosPassageiro(idEmpresa) {
         LEFT JOIN empresa AS e ON e.idEmpresa = l.fkEmpresa
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
         WHERE e.idEmpresa = ${idEmpresa}
+        AND r.qtdPassageiros > 0
+        AND r.dtRegistro LIKE '${mes}-%'
         GROUP BY l.idLinha
         ORDER BY soma;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    // // console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
