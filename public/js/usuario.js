@@ -53,7 +53,7 @@ function buscarPorIdentificador() {
                 div_conteudo.style.display = 'flex';
                 div_identificador.style.display = 'none';
 
-                input_razao_social.value = empresa.razaoSocial;
+                input_nome.value = empresa.nomeFantasia;
             });
         } else {
             throw ('Houve um erro na API!');

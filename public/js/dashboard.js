@@ -1,4 +1,8 @@
+let mesPesquisa = input_mes.value;
+
 function handle() {
+    mesPesquisa = input_mes.value;
+
     listarKpis();
     listarPassageiroGrafico();
     listarLinhaGrafico();
@@ -7,7 +11,7 @@ function handle() {
 }
 
 function listarKpis() {
-    fetch(`/dashboards/listarKpiGerente/${sessionStorage.ID_EMPRESA}`).then(function (resposta) {
+    fetch(`/dashboards/listarKpiGerente/${sessionStorage.ID_EMPRESA}?mes=${input_mes.value}`).then(function (resposta) {
         if (resposta.ok) {
             if (resposta.status == 204) {
                 // var feed = document.getElementById("feed_teste");
@@ -257,7 +261,18 @@ function plotarGraficoLinha(resposta) {
 }
 
 function listarPorMaisPassageiro() {
-    fetch(`/linhas/listarPorMaisPassageiro/${sessionStorage.ID_EMPRESA}`).then(function (resposta) {
+    div_linhas_alto.innerHTML = `
+                    <div class="header-tabela">
+                  <div class="div-opcao-header">
+                    <h3>Linha</h3>
+                  </div>
+                  <div class="div-opcao-header">
+                    <h3>Passageiros</h3>
+                  </div>
+                </div>
+    `;
+
+    fetch(`/linhas/listarPorMaisPassageiro/${sessionStorage.ID_EMPRESA}?mes=${input_mes.value}`).then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then(function (resposta) {
                 for (let i = 0; i < 3; i++) {
@@ -280,7 +295,18 @@ function listarPorMaisPassageiro() {
 }
 
 function listarPorMenosPassageiro() {
-    fetch(`/linhas/listarPorMenosPassageiro/${sessionStorage.ID_EMPRESA}`).then(function (resposta) {
+    div_linhas_baixo.innerHTML = `
+                    <div class="header-tabela">
+                  <div class="div-opcao-header">
+                    <h3>Linha</h3>
+                  </div>
+                  <div class="div-opcao-header">
+                    <h3>Passageiros</h3>
+                  </div>
+                </div>
+    `;
+
+    fetch(`/linhas/listarPorMenosPassageiro/${sessionStorage.ID_EMPRESA}?mes=${input_mes.value}`).then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then(function (resposta) {
                 for (let i = 0; i < 3; i++) {

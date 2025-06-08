@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), validarTipoUsuario('linha'), listarLinhas()">
+<body onload="validarSessao(), validarTipoUsuario('linha'), listarLinhas(), listarKpis()">
     <div id="div_alerta">
 
     </div>
@@ -32,22 +32,22 @@
 
                 <div class="div-funcionalidades">
 
-                    <a class="itens-nav" href="./dashboard.html">
+                    <a class="itens-nav" href="./dashboard.html" id="side_das">
                         <i class="bi bi-columns-gap"></i>
                         <p>DashBoards</p>
                     </a>
 
-                    <a class="itens-nav selecionado" href="#">
+                    <a class="itens-nav selecionado" href="#" id="side_lin">
                         <i class="bi bi-filter-left"></i>
                         <p>Linhas</p>
                     </a>
 
-                    <a class="itens-nav" href="./veiculos.html">
+                    <a class="itens-nav" href="./veiculos.html" id="side_vei">
                         <i class="bi bi-bus-front-fill"></i>
                         <p>Veículos</p>
                     </a>
 
-                    <a class="itens-nav" href="./funcionarios.html">
+                    <a class="itens-nav" href="./funcionarios.html" id="side_fun">
                         <i class="bi bi-person-fill-gear"></i>
                         <p>Funcionarios</p>
                     </a>
@@ -82,36 +82,15 @@
     <main>
         <header class="header-main">
             <h2>LINHAS</h2>
-            <div class="div-notificações">
-                <i class="bi bi-bell" style="font-size: 1.2rem;"></i>
-                <i class="bi bi-bell-fill icon-houver" style="font-size: 1.2rem; display: none;"></i>
-            </div>
         </header>
 
         <div class="div-infos" id="div_infos">
-            <div class="div-area-kpi" id="div_area_kpi">
-                <div class="div-kpi">
-                    <h3>Linhas regulares</h3>
-                    <div class="div-conteudo-kpi">
-                        <h1>62 / 130</h1>
-                    </div>
-                </div>
-                <div class="div-kpi">
-                    <h3>Linhas regulares</h3>
-                    <div class="div-conteudo-kpi">
-                        <h1>62 / 130</h1>
-                    </div>
-                </div>
-                <div class="div-kpi">
-                    <h3>Linhas regulares</h3>
-                    <div class="div-conteudo-kpi">
-                        <h1>62 / 130</h1>
-                    </div>
-                </div>
+            <div class="div-area-kpi" id="div_kpis">
             </div>
 
             <div class="div-area-tabela" id="div_area_tabela">
                 <div class="div-select-pagina">
+                    <input type="month" name="" id="input_mes" oninput="mes()" value="2025-05">
                     <span>Buscar linha: </span>
                     <input type="text" id="input_buscar" oninput="buscarLinha()">
                 </div>

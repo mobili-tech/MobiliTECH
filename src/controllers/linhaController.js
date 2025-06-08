@@ -2,8 +2,9 @@ var linhaModel = require("../models/linhaModel");
 
 function listarPorEmpresa(req, res) {
     var idEmpresa = req.params.idEmpresa;
-
-    linhaModel.listarPorEmpresa(idEmpresa)
+    var mes = req.query.mes;
+    
+    linhaModel.listarPorEmpresa(idEmpresa, mes)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -53,8 +54,8 @@ function listarPorLinha(req, res) {
 function buscarLinha(req, res) {
     var linha = req.params.linha;
     var idEmpresa = req.body.idEmpresaServer;
-
-    linhaModel.buscarLinha(linha, idEmpresa)
+    var mes = req.query.mes;
+    linhaModel.buscarLinha(linha, idEmpresa, mes)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -82,8 +83,9 @@ function buscarVeiculoPorGrupo(req, res) {
     var idLinha = req.body.idLinhaServer;
     var dataInicio = req.body.dataInicioServer;
     var dataFim = req.body.dataFimServer;
+    var mes = req.query.mes;
 
-    linhaModel.buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim)
+    linhaModel.buscarVeiculoPorGrupo(idGrupo, idEmpresa, idLinha, dataInicio, dataFim, mes)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -107,8 +109,8 @@ function buscarVeiculoPorGrupo(req, res) {
 
 function listarPorMaisPassageiro(req, res) {
     var idEmpresa = req.params.idEmpresa;
-
-    linhaModel.listarPorMaisPassageiro(idEmpresa)
+    var mes = req.query.mes;
+    linhaModel.listarPorMaisPassageiro(idEmpresa, mes)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -132,8 +134,8 @@ function listarPorMaisPassageiro(req, res) {
 
 function listarPorMenosPassageiro(req, res) {
     var idEmpresa = req.params.idEmpresa;
-
-    linhaModel.listarPorMenosPassageiro(idEmpresa)
+    var mes = req.query.mes;
+    linhaModel.listarPorMenosPassageiro(idEmpresa, mes)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
