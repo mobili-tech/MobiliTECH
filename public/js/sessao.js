@@ -24,45 +24,33 @@ function validarTipoUsuario(pagina) {
   var cargo = sessionStorage.CARGO_USUARIO;
 
   if (cargo == "Analista de Frota") {
+    if (pagina == "dashboard") {
+      window.location.href = "./linhas.html";
+    }
+
     if (pagina == "veiculo") {
       pencil1.style.display = "none";
       pencil2.style.display = "none";
       pencil3.style.display = "none";
     }
-    if (cargo == "Analista de Frota") {
-        if (pagina == "dashboard") {
-            window.location.href = './linhas.html';
-        }
 
-        if (pagina == "veiculo") {
-            pencil1.style.display = "none";
-            pencil2.style.display = "none";
-            pencil3.style.display = "none";
-        }
+    if (pagina == "page-perfil") {
+      div_edit_perfil.display = "none";
+    }
 
+    side_fun.style.display = "none";
+    side_das.style.display = "none";
+  } else if (cargo == "Gerente Operacional") {
     if (pagina == "linha") {
-      div_area_kpi.style.display = "none";
+      div_kpis.style.display = "none";
       div_area_tabela.style.height = "75vh";
     }
-  }
 
-  if (cargo != "empresa") {
     if (pagina == "page-perfil") {
-      div_edit_perfil.style.display = "none";
+      div_edit_perfil.display = "none";
     }
+
+    side_fun.style.display = "none";
+  } else {
   }
-}
-
-        side_fun.style.display = "none";
-        side_das.style.display = "none";
-    } else if (cargo == "Gerente Operacional") {
-        if (pagina == "linha") {
-            div_kpis.style.display = "none";
-            div_area_tabela.style.height = "75vh";
-        }
-
-        side_fun.style.display = "none";
-    } else {
-
-    }
 }
