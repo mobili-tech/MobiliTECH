@@ -60,7 +60,7 @@ function abrir() {
                                     </div>
                                     
                                      <div class="div_btn_gravar">
-                                        <button id="btn_gravar_edit" class="btn_gravar" onclick="editarFuncionario()">Editar</button>
+                                        <button id="btn_gravar_edit" class="btn_gravar" onclick="editar(${idEmpresa})">Editar</button>
                                     </div>
                                 </div>
                             </div>
@@ -106,5 +106,33 @@ function carregarTela() {
     })
     .catch(function (erro) {
       console.error("Erro na requisição fetch: ", erro);
+    });
+}
+
+function editar(idEmpresa) {
+  const nome = document.getElementById("editar_nome");
+  const email = document.getElementById("editar_email");
+  const senha = document.getElementById("editar_senha");
+
+  fetch(`/perfil/editar`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      idEmpresa: idEmpresa,
+      nome: nome.value,
+      email: email.value,
+      senha: senha.value,
+    }),
+  })
+    .then(function (resposta) {
+      if (resposta.ok) {
+        location.reload();
+      }
+      abrir();
+    })
+    .catch(function (erro) {
+      console.log(`#ERRO: ${erro}`);
     });
 }
