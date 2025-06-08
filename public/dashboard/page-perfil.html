@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), validarTipoUsuario('perfil')">
+<body onload="validarSessao(), validarTipoUsuario('page-perfil'), carregarTela()">
     <div id="div_alerta">
 
     </div>
@@ -75,12 +75,29 @@
 
     </nav>
 
+    <div class="fundo-modal" id="modal">
+
+    </div>
+
     <main>
 
         <header class="header-main">
 
             <h2>PERFIL</h2>
 
+            <div class="container-icons">
+
+                <div class="div-notificações">
+                    <i class="bi bi-bell" style="font-size: 1.2rem;"></i>
+                </div>
+
+                <div class="div-notificações" id="div_edit_perfil">
+                    <span onclick="abrir()" class="editar_icon">
+                        <i class="bi bi-pencil" style="font-size: 1rem;"></i>
+                    </span>
+                </div>
+
+            </div>
 
         </header>
 
@@ -89,19 +106,13 @@
             <div class="div-cards">
 
                 <span class="spn-label">Empresa</span>
-                <span class="nome-empresa">Transuniao</span>
+                <span id="nome_span" class="nome-empresa">teste</span>
 
             </div>
             <div class="div-cards">
 
                 <span class="spn-label">E-mail</span>
-                <span class="email-empresa">transuniao@viacao.com</span>
-
-            </div>
-            <div class="div-cards">
-
-                <span class="spn-label">Total de linhas</span>
-                <span class="linhas-empresa">130</span>
+                <span id="email_span" class="email-empresa">teste@teste</span>
 
             </div>
 
@@ -109,12 +120,9 @@
 
     </main>
 
-
-
-
-
 </body>
 
 </html>
 
+<script src="../js/perfil.js"></script>
 <script src="../js/sessao.js"></script>
