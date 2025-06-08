@@ -19,6 +19,10 @@ function validarTipoUsuario(pagina) {
     var cargo = sessionStorage.CARGO_USUARIO;
 
     if (cargo == "Analista de Frota") {
+        if (pagina == "dashboard") {
+            window.location.href = './linhas.html';
+        }
+
         if (pagina == "veiculo") {
             pencil1.style.display = "none";
             pencil2.style.display = "none";

@@ -83,8 +83,16 @@ function buscarLinha(linha, idEmpresa, mes) {
         WHERE e.idEmpresa = ${idEmpresa}
         AND r.dtRegistro LIKE '${mes}-%'
         AND (l.nome LIKE '%${linha}%' OR l.num LIKE '%${linha}%')
-        AND SUM((l.qtdViagensIda + l.qtdViagensVolta)) > 0
-        GROUP BY l.idLinha
+        AND (l.qtdViagensIda + l.qtdViagensVolta) > 0
+        GROUP BY 
+            l.idLinha,
+            l.nome,
+            l.qtdViagensIda,
+            l.qtdViagensVolta,
+            g.idGrupo,
+            g.tipo,
+            e.idEmpresa,
+            e.razaoSocial
         ORDER BY g.idGrupo, l.idLinha;
     `;
     // // console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -192,6 +200,7 @@ function listarPorMenosPassageiro(idEmpresa, mes) {
         LEFT JOIN registro AS r ON r.fkLinha = l.idLinha
         WHERE e.idEmpresa = ${idEmpresa}
         AND r.qtdPassageiros > 0
+        AND r.dtRegistro LIKE '${mes}-%'
         GROUP BY l.idLinha
         ORDER BY soma;
     `;
