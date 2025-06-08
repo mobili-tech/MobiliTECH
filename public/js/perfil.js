@@ -1,5 +1,6 @@
-const cargo = sessionStorage.CARGO;
-const idUsuario = sessionStorage.ID_FUNCIONARIO;
+const idEmpresa = sessionStorage.ID_EMPRESA;
+const cargo = sessionStorage.CARGO_USUARIO;
+const idUsuario = sessionStorage.ID_USUARIO;
 
 function editar(idFuncionario) {
   const nome = document.getElementById("editar_nome");
@@ -31,10 +32,10 @@ function editar(idFuncionario) {
 function abrir() {
   if (modal.style.display == "none" || modal.style.display == "") {
     modal.style.display = "flex";
-    const idEmpresa = sessionStorage.ID_EMPRESA;
 
-    console.log(idEmpresa);
-    fetch(`/perfil/buscarUsuario/${idEmpresa}`)
+    fetch(
+      `/perfil/buscarUsuario/${idEmpresa}?cargo=${cargo}&idUsuario=${idUsuario}`
+    )
       .then(function (resposta) {
         if (resposta.ok) {
           resposta.json().then(function (resposta) {
@@ -65,7 +66,7 @@ function abrir() {
                             </div>
                         `;
 
-            editar_nome.value = funcionario.nomeFantasia;
+            editar_nome.value = funcionario.nome;
             editar_email.value = funcionario.email;
             editar_senha.value = funcionario.senha;
           });
@@ -81,4 +82,29 @@ function abrir() {
 
 function fecharModal() {
   modal.style.display = "none";
+}
+
+function carregarTela() {
+  if (!idEmpresa) {
+    console.error("ID da empresa não encontrado na sessionStorage.");
+    return;
+  }
+
+  fetch(
+    `/perfil/buscarEmpresaPorId/${idEmpresa}?cargo=${cargo}&idUsuario=${idUsuario}`
+  )
+    .then(function (resposta) {
+      if (resposta.ok) {
+        resposta.json().then(function (resposta) {
+          const empresa = resposta[0];
+          nome_span.innerHTML = empresa.nome;
+          email_span.innerHTML = empresa.email;
+        });
+      } else {
+        console.error("Erro ao buscar empresa: ", resposta.statusText);
+      }
+    })
+    .catch(function (erro) {
+      console.error("Erro na requisição fetch: ", erro);
+    });
 }

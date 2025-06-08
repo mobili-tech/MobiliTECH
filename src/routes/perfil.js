@@ -7,8 +7,8 @@ router.get("/buscarUsuario/:idEmpresa", function (req, res) {
   perfilRouter.buscarUsuario(req, res);
 });
 
-router.post("/carregarTela/:idEmpresa", function (req, res) {
-  perfilRouter.buscarUsuario(req, res);
+router.get("/buscarEmpresaPorId/:idEmpresa", function (req, res) {
+  perfilRouter.buscarEmpresaPorId(req, res);
 });
 
 router.post("/editar", function (req, res) {

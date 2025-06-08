@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), validarTipoUsuario('perfil')">
+<body onload="validarSessao(), validarTipoUsuario('perfil'), carregarTela()">
     <div id="div_alerta">
 
     </div>
@@ -106,13 +106,13 @@
             <div class="div-cards">
 
                 <span class="spn-label">Empresa</span>
-                <span class="nome-empresa">Transuniao</span>
+                <span id="nome_span" class="nome-empresa">teste</span>
 
             </div>
             <div class="div-cards">
 
                 <span class="spn-label">E-mail</span>
-                <span class="email-empresa">transuniao@viacao.com</span>
+                <span id="email_span" class="email-empresa">teste@teste</span>
 
             </div>
 
